@@ -1,0 +1,150 @@
+
+
+.side-bar{
+    width:75px;
+    background:white;
+    left:0;
+  /* overflow:hidden; */
+   padding-top:2rem;
+   display:flex;
+   justify-content:stretch;
+   flex-direction:column;
+   border-right:1px solid (var(--dark-gray)) ;
+   height:calc(100vh - var(--nav-height));
+   transition:300ms ease-in-out;
+}
+
+.top-section{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    text-align: center;
+
+    
+}
+.side-bar-Acc{
+    font-size:1rem;
+    font-weight:bold;
+    color:var(--dark-gray);
+    margin-top:.5rem;
+    margin-bottom:.15rem;
+}
+.side-bar-AccName{
+    font-size:.9rem;
+    color:var(--medium-gray)
+}
+
+.side-bar-text{
+    display: none;
+   }
+   .side-bar.open .side-bar-text{
+       display: block;
+       font-size:.9rem
+       
+   }
+.middle-section{
+    width:100%;
+    margin:.5rem 0;
+    flex-grow: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.sidebar-items{
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin:0;
+    padding:0;
+}
+.sidebar-list-items{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content:center;
+    
+}
+
+.side-bar-Links{
+    text-decoration: none;
+    font-size:.8rem;
+    width: 100%;
+    padding:.5rem 0;
+    display: flex;  
+    align-self: center;
+    justify-content:center;
+    color:var(--light-gray);
+}
+.side-bar-Links:hover{
+    color:var(--medium-gray);
+    background-color:rgba(186, 220, 201, 0.89);
+    transition:.2s ease-in-out;
+   
+}
+.side-bar-Links.active::before{
+    content:"";
+    position:absolute;
+    background-color: red;
+    width:3px;
+    height:100%;
+    left:0;
+}
+
+.side-bar-Links.active{
+ color:var(--green-color);
+ display: flex;
+ justify-content:center;
+ align-items:center;
+ background-color:var(--lightest-gray);
+ position:relative;
+ height:40px;
+}
+
+
+
+.side-bar-img-profile{
+    width:30px;
+    height:35px;
+    border-radius:50%;
+}
+.side-bar.open .side-bar-img-profile{
+    width:50px;
+    height:55px;
+    border-radius:50%;
+    
+}
+
+
+
+.side-bar-icons{
+    margin-right:.5rem;
+}
+
+
+.bottom-section{
+
+ 
+}
+
+.side-bar.open{
+    width:250px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    
+    
+}
+.side-bar.open .side-bar-icons{
+   margin-right:1rem;
+ 
+}
+.side-bar.open .side-bar-Links{
+   display:flex;
+   justify-content:flex-start;
+   align-items:center;
+   padding: 1rem;
+ 
+}

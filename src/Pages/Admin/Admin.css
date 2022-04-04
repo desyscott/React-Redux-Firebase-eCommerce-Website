@@ -1,0 +1,10 @@
+.hero-container{
+    background-color:#f5f1f1e2;
+    height:100vw;
+    width:100%;
+    margin:1rem;
+}
+
+.container{
+    display: flex;
+}
