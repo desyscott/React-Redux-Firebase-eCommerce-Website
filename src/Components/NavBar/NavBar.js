@@ -47,7 +47,7 @@ function NavBar({toggle,open}) {
       
       <div className="nav-items">
       <div className="nav-notification">
-      <IoIosNotificationsOutline/>
+      <IoIosNotificationsOutline size={24}/>
       </div>
       
 

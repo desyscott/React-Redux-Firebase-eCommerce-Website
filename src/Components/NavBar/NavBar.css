@@ -7,8 +7,8 @@
     box-shadow:  0 1px 10px 0 rgba(0, 0, 0, 0.2);
     display: flex;
     align-items: center;
-    /* justify-content:space-between; */
     padding:0 .7rem;
+    z-index:9999;
 }
 @media screen and (max-width:300px){
     .nav{
@@ -87,4 +87,16 @@ right:20px;
 .nav-notification{
     transform:translate(-8px,6px);
     cursor: pointer;
+}
+.nav-notification::before{
+   content:"";
+   position:absolute;
+   top:3px;
+   left:14px;
+   background-color:red;
+   width:7px;
+   height:7px;
+   border-radius:50%;
+   
+   
 }

@@ -13,14 +13,14 @@ export const SideBarItems =[
 {
    title:"Dashboard",
    path:"/dashboard",
-   cName:"side-bar-Links active",
+   cName:"sidebar-Links active",
    icon:<MdDashboard size={24}/>
    
 },
 {
     title:"Products",
     path:"/products",
-    cName:"side-bar-Links ",
+    cName:"sidebar-Links ",
     icon:<AiFillShop size={24}/>
 
     
@@ -28,43 +28,43 @@ export const SideBarItems =[
 {
     title:"Orders",
     path:"/orders",
-    cName:"side-bar-Links ",
+    cName:"sidebar-Links ",
     icon:<HiShoppingCart size={24}/>
 },
 {
     title:"Customers",
-    path:"/dashboard",
-    cName:"side-bar-Links ",
+    path:"/customers",
+    cName:"sidebar-Links ",
     icon:<FaUsers size={24}/>
 },
 {
     title:"Statistics",
-    path:"/dashboard",
-    cName:"side-bar-Links ",
+    path:"/statistics",
+    cName:"sidebar-Links ",
     icon:<FcSalesPerformance size={24} />
 },
 {
     title:"Reviews",
     path:"/reviews",
-    cName:"side-bar-Links ",
+    cName:"sidebar-Links ",
     icon:<MdRateReview size={24}/>
 },
 {
     title:"Transactions",
     path:"/transactions",
-    cName:"side-bar-Links ",
+    cName:"sidebar-Links ",
     icon:<VscLayers size={24}/>
 },
 {
     title:"sellers",
     path:"/sellers",
-    cName:"side-bar-Links ",
+    cName:"sidebar-Links ",
     icon:<VscGlobe size={24}/>
 },
 {
     title:"Host Offers",
     path:"/host offers",
-    cName:"side-bar-Links ",
+    cName:"sidebar-Links ",
     icon:<BsFillTagsFill size={24}/>
 },
 
