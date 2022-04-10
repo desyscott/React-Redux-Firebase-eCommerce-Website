@@ -13,6 +13,7 @@ function App() {
     <AdminPage/>
     <Routes>
     <Route path="/" exact component={Home}/>
+    <Route path="/admin" exact component={AdminPage}/>
     </Routes>
     </BrowserRouter>
     </div>

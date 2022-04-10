@@ -83,24 +83,31 @@ const AdminPage =()=>{
             <li key={index} className="orders-list-items">
             
             <div className="order-section">
-         <div className="order-cred1">
+         <div  className="order-cred1">
+         <div>
          <p>{order.id}</p>
+         </div>
+         <div>
             <p className="order-name">{order.name}</p>
+            </div>
             </div>
             
             <div className="order-cred2">
-           
-            <p className="order-cred2Sub">{order.email}</p>
-         
-     
-            <p className="order-cred2Sub">{order.price}</p>
             
+           <div>
+            <p className="order-cred2Sub">{order.email}</p>
+            </div>
          
+            <div>
+            <p className="order-cred2Sub">{order.price}</p>
+            </div>
+            
+            <div>
             <p className="order-cred2Sub">{order.progress}</p>
-         
-       
+            </div>
+            <div>
             <p className="order-cred2Sub">{order.date}</p>
-          
+            </div>
             </div>
             </div>
             </li>

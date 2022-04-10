@@ -6,6 +6,7 @@ import { BsTextIndentRight } from "react-icons/bs";
 import { BsCart4} from "react-icons/bs";
 import { IoIosNotificationsOutline } from "react-icons/io";
 import { GoSearch} from "react-icons/go";
+import { RiArrowDropDownLine} from "react-icons/ri";
 import { IconContext } from "react-icons";
 import profileImage from "../images/Lori Harvey.jpg"
 
@@ -30,10 +31,9 @@ function NavBar({toggle,open}) {
       </div>
       
       <div className="search-bar-container">
-    
-      <input type="text"  placeholder=" search" className="search-bar"/>
-      <button className="search-icon" >
-      <GoSearch size={15}/>
+      <input type="text"  placeholder=" search" className="search-bar_input"/>
+      <button className="search-bar_submit" >
+      <GoSearch size={15} />
       </button>
       </div>
    
@@ -52,10 +52,11 @@ function NavBar({toggle,open}) {
       
 
      <img className="img-profile" src={profileImage} alt="profileImage"/>
+     <div className="dropdown-icon">
+     <RiArrowDropDownLine size={24}/>
+     </div>
 
       </div>
-      
-      
       </div>
       {/* </IconContext.Provider> */}
     </>

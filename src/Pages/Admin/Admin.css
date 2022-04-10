@@ -105,6 +105,13 @@
     
 }
 
+.Latest-orders{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    width:100%;
+
+}
 .orders-list-items{
     list-style:none;
     display:flex;
@@ -128,6 +135,9 @@
 }
 .order-cred2{
     display:flex;
+    margin-bottom:1rem;
+    align-items:center;
+
   
 
     

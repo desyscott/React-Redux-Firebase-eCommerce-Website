@@ -27,7 +27,7 @@ function SideBar({open}) {
  <ul className="sidebar-items">
  {SideBarItems.map((item,index)=>{
    return (
-    <li key={index} className={click? "sidebar-list-items active":"sidebar-list-items"}>
+    <li key={index} className="sidebar-list-items">
     <Link to={item.path} className={item.cName} onClick={handleClick} >
    <div className="sidebar-icons">{item.icon}</div> 
 <div className="side-bar-text-hidden .link-title">{item.title}</div>

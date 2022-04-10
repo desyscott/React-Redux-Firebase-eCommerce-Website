@@ -74,7 +74,7 @@ padding:.6rem 0;
 color:var(--medium-gray);
  }
  
- .sidebar-Links.active{
+ .sidebar-Links:active{
 color:var(--green-color);
  }
  
@@ -88,12 +88,12 @@ color:var(--green-color);
     border-radius:5px;
 
    }
- .sidebar-list-items.active{
+ .sidebar-list-items:active{
     background-color:var(--lightest-gray);
     position:relative
    }
  
-   .sidebar-list-items.active::before{
+   .sidebar-list-items:active::before{
     content:"";
     position:absolute;
     background-color: red;

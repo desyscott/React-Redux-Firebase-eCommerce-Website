@@ -13,7 +13,7 @@ export const SideBarItems =[
 {
    title:"Dashboard",
    path:"/dashboard",
-   cName:"sidebar-Links active",
+   cName:"sidebar-Links",
    icon:<MdDashboard size={24}/>
    
 },
