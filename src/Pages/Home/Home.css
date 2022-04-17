@@ -1,0 +1,28 @@
+
+.navBar{
+    height: var(--nav-height);
+    width: 100%;
+    position: sticky;
+    background-color:#f1fff1;
+    top:0;
+    box-shadow:  0 1px 10px 0 rgba(0, 0, 0, 0.2);
+    display: flex;
+    padding:0 .7rem;
+    z-index:9999;
+}
+
+
+.Nav-Items{
+    display: flex;
+    text-decoration:none ;  
+}
+
+
+
+
+.Container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}

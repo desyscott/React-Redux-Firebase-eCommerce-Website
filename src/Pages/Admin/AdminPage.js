@@ -7,6 +7,7 @@ import {FaDollarSign} from "react-icons/fa"
 import {BsGraphUp}from "react-icons/bs"
 import {BsCartCheckFill}from "react-icons/bs"
 import {GrDiamond}from "react-icons/gr"
+import Products from "../Products"
 
 
 const AdminPage =()=>{
@@ -76,45 +77,51 @@ const AdminPage =()=>{
         
         
         <div className="Latest-orders">
-        <h3 className="">Latest ordesr</h3>
-        <ul className="orders-items">
-        {orders.map((order,index)=>{
-          return(
-            <li key={index} className="orders-list-items">
-            
-            <div className="order-section">
-         <div  className="order-cred1">
-         <div>
-         <p>{order.id}</p>
-         </div>
-         <div>
-            <p className="order-name">{order.name}</p>
-            </div>
-            </div>
-            
-            <div className="order-cred2">
-            
-           <div>
-            <p className="order-cred2Sub">{order.email}</p>
-            </div>
-         
-            <div>
-            <p className="order-cred2Sub">{order.price}</p>
-            </div>
-            
-            <div>
-            <p className="order-cred2Sub">{order.progress}</p>
-            </div>
-            <div>
-            <p className="order-cred2Sub">{order.date}</p>
-            </div>
-            </div>
-            </div>
-            </li>
-          )
-        })}
-        </ul>
-
+        <h3 >Recent Orders</h3>
+        
+           <div className="orders-container">
+           <div  className="orders-header">
+           <div>OrderID</div>
+           <div>Payment Method</div>
+           <div>Order Date</div>
+           <div>Delivery Date</div>
+           <div>Status</div>
+           <div>Amount</div>
+           </div>
+           
+           {orders.map((order,index)=>{
+             return(<>
+                    <div className="order-row" key={index}>
+                    <p>
+                    {order.id}
+                    </p>
+                    <p>
+                    {order.paymentMethod}
+                    </p>
+                    <div>
+                     <p>{order.OrderDate}</p>
+                   <p>{order.OrderTime}</p>
+                    </div>
+                    <p>
+                    {order.DeliveryDate}
+                    </p>
+                    <p  >
+                    {order.status}
+                    </p>
+                    <p>
+                    {order.price}
+                    </p>
+                    </div>
+             </>)
+             
+           })}
+           
+           
+           </div>
+           
+     
+      
+    
         </div>
         
         
@@ -125,6 +132,6 @@ const AdminPage =()=>{
     )
     
 }
-
-
 export default AdminPage;
+
+
