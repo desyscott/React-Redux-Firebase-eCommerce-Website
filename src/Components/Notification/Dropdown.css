@@ -1,0 +1,16 @@
+
+.notification-menu{
+    width:300px;
+    position:absolute;
+    top:25px;
+    list-style-type:none;
+    height: 100px;
+    background:#ffff;
+    box-shadow:  0 1px 10px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    text-align:start;
+    right:5px;
+    transition:550ms ease-in-out;
+
+}
+

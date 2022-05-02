@@ -1,21 +1,25 @@
+
 .dropdown-menu{
-    width:120px;
+    width:125px;
     position:absolute;
     top:45px;
     list-style-type:none;
-    height: 100px;
-    background: #44484c;
+    height: 130px;
+    background:#ffff;
+    box-shadow:  0 1px 10px 0 rgba(0, 0, 0, 0.2);
     border-radius: 5px;
     text-align:start;
-    left:-2px;
-    
+    left:-10px;
+    transition:550ms ease-in-out;
+
 }
 
 .dropdown-menu li{
-    margin-top:2px ;
-    background: #44484c;
     cursor: pointer;
     border-radius: 5px;
+    margin: 5px;
+    padding: 0;
+
 
 }
 
@@ -27,20 +31,41 @@
 
 .drop-link {
     display: block;
-    width: 100%;
-    height: 100%;
     text-decoration: none;
-    color: #fff;
-    font-size: .8rem;
+    color: rgb(121, 117, 117);
+    font-size: .5rem;
     padding: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    height:30px;
+
   }
   .drop-link:hover{
-    background: #7a8ca0;
+    background: #a6c9c1;
+    border-radius: 5px;
+    box-shadow:  0 1px 10px 0 rgba(0, 0, 0, 0.2);
     display: flex;
     align-items: center;  
     color: #fff;
+    transition:200ms ease-in-out;
+
   }
   
   .dropdown-menu.clicked{
     display: none; 
+}
+  
+.dropdown-title{
+  margin-left: 5px;
+}
+
+.icons{
+  color: #0a8640f2;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.icons:hover{
+  color: #fff;
 }

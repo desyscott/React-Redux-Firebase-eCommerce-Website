@@ -47,7 +47,7 @@
 .search-bar-container{
     display:flex; 
     border-radius:10px;
-    width:30px;
+    width:10px;
     height:30px;
     position:relative;
     margin-left: 50px;
@@ -91,18 +91,28 @@ outline:0;
     color:var(--medium-gray);
     margin-left:auto;
 }
+
+
+.close-button{
+    margin-left:25.5rem;
+    position:absolute;
+    top:5px;
+    cursor: pointer;
+}
 .search-bar-container:focus-within{
  border:1px solid var(--green-color);
   width:35%;
-  transition: 300ms ease-in-out;
+  transition: 500ms ease-in-out;
 }
- .search-bar_submit:focus-within{
+
+
+.search-bar-container .search-bar_submit:focus-within{
  color:#fff;
 background-color:var(--green-color);
 
 }
  .search-bar_input:focus-within{
-    width:90%;
+    width:85%;
 cursor:initial;
 }
  
@@ -143,6 +153,5 @@ right:20px;
 
 .dropdown-icon{
     transform:translate(2px,15px);
-    cursor: pointer;
-    
+    cursor: pointer; 
 }

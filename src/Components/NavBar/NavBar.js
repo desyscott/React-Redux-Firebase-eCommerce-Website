@@ -8,41 +8,26 @@ import { IoIosNotificationsOutline } from "react-icons/io";
 import { GoSearch} from "react-icons/go";
 import {IoMdArrowDropdown} from "react-icons/io";
 import {IoMdArrowDropup} from "react-icons/io";
+import {IoMdClose} from "react-icons/io";
 import profileImage from "../images/Lori Harvey.jpg"
 import Dropdown from "../DropDown/Dropdown"
+import Notification from "../Notification/index"
 
 
 
-function NavBar({toggle,open}) {
+function NavBar({toggle,open,showDropDown, notification,MouseClick,notificationToggle}) {
   
-  const [showDropDown,setShowDropDown]=useState(false)
-  const ref =useRef()
+   const [input,setInput]=useState("")
+   
+
+
+const handleChange=(event)=>{
+setInput(event.target.value);
   
-  const MouseHover = () => {
-    if (window.innerWidth > 960) {
-      setShowDropDown(!showDropDown);
-    } else {
-      setShowDropDown(!showDropDown);
-    }
-  };
-
-  useEffect(() => {
-    const checkIfClickedOutside = (e) => {
-      if (showDropDown && ref.current && !ref.current.contains(e.target)) {
-        setShowDropDown(false);
-      }
-    };
-    document.addEventListener("click", checkIfClickedOutside);
-    return () => {
-      document.removeEventListener("click", checkIfClickedOutside);
-    };
-  }, [showDropDown]);
-
-      
-    
+}
   return (
     <>
-    <div className="nav" ref={ref} >
+    <div className="nav" >
     
     <div className="nav-admin">
     
@@ -55,21 +40,27 @@ function NavBar({toggle,open}) {
       </div>
       
       <div className="search-bar-container">
-      <input type="text"  placeholder=" search" className="search-bar_input"/>
+      <input type="text"  placeholder=" search" className="search-bar_input" value={input} onChange={handleChange}/>
+   
+     {input && <div className="close-button" onClick={()=>setInput("")}>
+       <IoMdClose  size={19} />
+       </div>}
       <button className="search-bar_submit" >
       <GoSearch size={15} />
       </button>
+   
       </div>
    
   
 
       
       <div className="nav-items">
-      <div className="nav-notification">
+      <div className="nav-notification"  onClick={notificationToggle}>
       <IoIosNotificationsOutline size={24}/>
+      {notification && <Notification/>}
       </div>
       
- <div  className="profile-container"   onClick={MouseHover}
+ <div  className="profile-container"   onClick={MouseClick}
              >
      <img className="img-profile" src={profileImage} alt="profileImage"/>
      <div className="dropdown-icon">

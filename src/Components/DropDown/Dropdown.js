@@ -20,7 +20,8 @@ function Dropdown() {
             return(
             <li key={index} >
               <Link to={item.path} className={item.cName} onClick={closeDropDownMenu}>
-              {item.title}
+         <div className="icons">{item.icon}</div>
+           <div  className="dropdown-title"> {item.title}</div>
               </Link>
             </li>
             )

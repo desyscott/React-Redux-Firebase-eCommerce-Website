@@ -9,9 +9,8 @@ import {MdSettings} from "react-icons/md"
 
 
 function SideBar({open}) {
-  const [click,setClick]=useState(false)
+  const [selected,setSelected]=useState(0)
 
-  const handleClick=()=>setClick(true)
   
   return (
     <aside className={open? "side-bar open":"side-bar"}>
@@ -23,25 +22,24 @@ function SideBar({open}) {
  </div>
  
  </div> 
+ 
  <div className="middle-section">
  <ul className="sidebar-items">
  {SideBarItems.map((item,index)=>{
    return (
-    <li key={index} className="sidebar-list-items">
-    <Link to={item.path} className={item.cName} onClick={handleClick} >
+    <li key={index} className={selected===index? "sidebar-list-items active":"sidebar-list-items"} onClick={()=>setSelected(index)}>
+    <Link to={item.path} className={item.cName}>
    <div className="sidebar-icons">{item.icon}</div> 
 <div className="side-bar-text-hidden .link-title">{item.title}</div>
     </Link>
     </li>
    )
  })}
- 
  </ul>
-
  </div> 
  
  <div className="bottom-section">
- <ul className="sidebar-items">
+ {/* <ul className="sidebar-items">
  <li  className={click? "sidebar-list-items active":"sidebar-list-items"}><Link to="/appearance" className="sidebar-Links"><div className="sidebar-icons">
  <MdOutlineBrush size={24}/></div><div className="side-bar-text-hidden">Appearance</div></Link></li>
  
@@ -56,7 +54,7 @@ function SideBar({open}) {
 <div className="side-bar-text-hidden">send feedBack</div></Link></li>
 
 
- </ul>
+ </ul> */}
  </div> 
  </aside>
   )
