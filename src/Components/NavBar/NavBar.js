@@ -1,5 +1,6 @@
 import React,{useRef,useEffect,useState} from 'react'
 import { Link } from "react-router-dom";
+import useDarkMode  from "../useDarkMode"
 import "./NavBar.css"
 import { FaBars } from "react-icons/fa";
 import { BsTextIndentRight } from "react-icons/bs";
@@ -9,6 +10,8 @@ import { GoSearch} from "react-icons/go";
 import {IoMdArrowDropdown} from "react-icons/io";
 import {IoMdArrowDropup} from "react-icons/io";
 import {IoMdClose} from "react-icons/io";
+import {BiSun} from "react-icons/bi";
+import {HiOutlineMoon} from "react-icons/hi";
 import profileImage from "../images/Lori Harvey.jpg"
 import Dropdown from "../DropDown/Dropdown"
 import Notification from "../Notification/index"
@@ -18,6 +21,7 @@ import Notification from "../Notification/index"
 function NavBar({toggle,open,showDropDown, notification,MouseClick,notificationToggle}) {
   
    const [input,setInput]=useState("")
+   const [isDark,setIsDark]=useDarkMode()
    
 
 
@@ -59,6 +63,9 @@ setInput(event.target.value);
       <IoIosNotificationsOutline size={24}/>
       {notification && <Notification/>}
       </div>
+      
+     <div onClick={()=>setIsDark(!isDark)}>{isDark? <BiSun/>:<HiOutlineMoon />}</div>
+   
       
  <div  className="profile-container"   onClick={MouseClick}
              >

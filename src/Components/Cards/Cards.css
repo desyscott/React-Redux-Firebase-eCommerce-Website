@@ -1,0 +1,31 @@
+.Cards{
+width:100%;
+ display: grid;
+grid-template-columns: repeat(3,1fr);
+grid-column-gap:40px;
+border-radius:1rem;
+}
+
+
+
+.parentContainer{
+    width:100%;
+}
+
+@media screen and (max-width: 1200px) {
+    .Cards{
+      flex-direction: column;
+    }
+    .parentContainer{
+      height: 9rem;
+      flex-wrap: wrap;
+    }
+  }
+  
+  @media screen and (max-width: 768px)
+  {
+    .Cards{
+      width: 100%;
+      flex-wrap: wrap;
+    }
+  }

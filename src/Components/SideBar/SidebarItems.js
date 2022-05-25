@@ -19,7 +19,7 @@ export const SideBarItems =[
 },
 {
     title:"Products",
-    // path:"/products",
+    path:"/products",
     cName:"sidebar-Links ",
     icon:<AiFillShop size={24}/>
 
@@ -49,25 +49,6 @@ export const SideBarItems =[
     cName:"sidebar-Links ",
     icon:<MdRateReview size={24}/>
 },
-{
-    title:"Transactions",
-    // path:"/transactions",
-    cName:"sidebar-Links ",
-    icon:<VscLayers size={24}/>
-},
-{
-    title:"sellers",
-    // path:"/sellers",
-    cName:"sidebar-Links ",
-    icon:<VscGlobe size={24}/>
-},
-{
-    title:"Host Offers",
-    // path:"/host offers",
-    cName:"sidebar-Links ",
-    icon:<BsFillTagsFill size={24}/>
-},
 
-    
     
 ]

@@ -1,28 +1,147 @@
 
-.navBar{
-    height: var(--nav-height);
+.home-container{
+    height: 100vh;
+}
+.Hero-container{
+    height: 100%;
+    background-color:#8ab592;
+    color:#fff;
+margin-bottom:20px;
+     
+    }
+.home-nav{
+    height: 80px;
     width: 100%;
+    max-width:1400px;
+    margin:auto;
+    padding:35px;
     position: sticky;
-    background-color:#f1fff1;
+    background-color:transparent;
     top:0;
     box-shadow:  0 1px 10px 0 rgba(0, 0, 0, 0.2);
     display: flex;
-    padding:0 .7rem;
+    justify-content: space-between;
+    align-items: center;
     z-index:9999;
 }
 
 
+.nav-logo{
+    text-decoration: none;
+    font-size:1.6rem;
+    font-weight:500;
+    color:#fff; 
+    letter-spacing:1px;
+}
+.logo-icon{
+    margin-right: 8px;
+     color:"#ffff";
+
+
+}
+
 .Nav-Items{
     display: flex;
+    list-style: none;
+}
+
+.Nav-Items li .nav-link{
+    padding:3px 10px;
+    font-weight:500;
+    letter-spacing:0.5px;
+    color:#fff;
+}
+
+.nav-logo-container{
+    
+}
+
+
+.nav-link{
     text-decoration:none ;  
 }
-
-
-
-
-.Container{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
+.nav-button{
+    display:grid;
+    grid-template-columns: auto auto;
+    gap: 25px;
+    
 }
+
+
+
+
+
+.Hero-content{
+    height: 100%;
+    display:grid;
+    grid-template-columns: repeat(2,1fr);
+}
+.Hero-item{
+    display: flex;
+    flex-direction: column;
+   align-items:flex-start;
+    
+}
+
+.hero-left-item{
+position: relative;
+display: flex;
+flex-direction: column;
+align-items:flex-start;
+
+}
+
+
+.slide-frame{
+    background-color:rgb(214, 228, 228);
+    position:absolute;
+    top:60px;
+    padding:40px; 
+     height: 55%;
+    width: 575px;
+    overflow: hidden;
+    box-shadow: 0px 0px 8px rgba(0,0,0,0.2);
+       
+   }
+
+.active-slide{
+    transition:1s ease;  
+    position:absolute;
+    animation:animate  7s linear infinite;
+    animation-delay:2s;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.left-img{
+    height: 63%;
+    box-shadow: 0px 0px 8px rgba(64, 108, 95, 0.2)    
+}
+
+.slide-details{
+    color:#363535;
+    position:absolute;
+    bottom:-20px;
+    text-transform: uppercase;
+    font-family: 'Lobster', cursive;
+    
+    
+}
+
+@keyframes animate {
+    0%{
+      opacity: 1;
+      transform: translateY(100%) ;
+    }
+
+    25%, 40%{
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0%) scale(1);
+    }
+   
+    65%, 100%{
+      opacity: 1;
+      transform: translateY(-120%) ;
+    }
+  }
