@@ -5,8 +5,9 @@
 .Hero-container{
     height: 100%;
     background-color:#8ab592;
+    background:linear-gradient(to right,#212c23,#8ab592);
     color:#fff;
-margin-bottom:20px;
+    z-index: 1;
      
     }
 .home-nav{
@@ -21,10 +22,26 @@ margin-bottom:20px;
     box-shadow:  0 1px 10px 0 rgba(0, 0, 0, 0.2);
     display: flex;
     justify-content: space-between;
+    text-transform: uppercase;
     align-items: center;
     z-index:9999;
 }
 
+.home-nav-active{
+    background:#000;
+    height: 80px;
+    width: 100%;
+    max-width:1400px;
+    margin:auto;
+    padding:35px;
+    position: sticky;
+    top:0;
+    box-shadow:  0 1px 10px 0 rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index:9999;
+}
 
 .nav-logo{
     text-decoration: none;
@@ -43,6 +60,7 @@ margin-bottom:20px;
 .Nav-Items{
     display: flex;
     list-style: none;
+
 }
 
 .Nav-Items li .nav-link{
@@ -50,40 +68,123 @@ margin-bottom:20px;
     font-weight:500;
     letter-spacing:0.5px;
     color:#fff;
-}
-
-.nav-logo-container{
-    
-}
-
-
-.nav-link{
     text-decoration:none ;  
 }
+.nav-link{
+    position:relative;
+}
+
+
+.nav-link::before{
+    content:"";
+    position:absolute;
+    bottom:0;
+    right:0;
+    left:0;
+    background:rgb(5, 187, 117);
+    height:4px;
+       transform: scaleX(0);
+    transition: transform .3s ease-in-out;  
+ 
+}
+
+.nav-link:hover::before{
+    transform: scaleX(1);
+}
+
+
+
 .nav-button{
     display:grid;
     grid-template-columns: auto auto;
     gap: 25px;
     
+    
 }
-
-
+.login-btn{
+    text-transform: uppercase;
+    text-decoration:none;
+    transform:translateY(10px);
+    color:#fff;
+    cursor:pointer;
+}
 
 
 
 .Hero-content{
     height: 100%;
+    position:relative;
     display:grid;
     grid-template-columns: repeat(2,1fr);
 }
 .Hero-item{
     display: flex;
     flex-direction: column;
+    transform: translateY(150px);
+    margin-left: 60px;
    align-items:flex-start;
-    
+   color:#fff;
+    text-align: center;
+    font-weight: bold;
+    text-transform: uppercase;
+    /* padding: 0 2.2rem; */
 }
 
-.hero-left-item{
+
+.Hero-item >h1{
+    font-size: 1.8rem;
+    font-weight: 500;
+    text-transform: capitalize;
+    box-shadow: 3px 5px #dcbd57;
+    letter-spacing: 3px;
+
+  }
+  .Hero-item >p{
+    margin-top:8px ;
+   line-height:50px ;
+
+  } 
+  .appStore-btn{
+      width:150px;
+      height:50px;
+      border-radius:5px;
+
+  }
+  .googleplay-btn{
+      width:150px;
+      height:50px;
+      border-radius:5px;
+   
+   
+  }
+  .download-btn{
+      margin-top:50px;
+      width:305px;
+      display:flex;
+      justify-content:space-between;
+      cursor:pointer;
+      
+      
+  }
+  .HeroBtn{
+    padding: .9rem 2rem;
+    cursor: pointer;
+    background: #e31837;
+    text-transform: uppercase;
+    border: none;
+    color: #fff;
+    font-size: 1rem;
+    transition: color, background 0.3s ease-in;
+  }
+  
+  .HeroBtn:hover{
+    background: #e9ba23;
+    color: #000;
+      
+  }
+  
+
+.hero-right-item{
 position: relative;
 display: flex;
 flex-direction: column;
@@ -101,16 +202,39 @@ align-items:flex-start;
     width: 575px;
     overflow: hidden;
     box-shadow: 0px 0px 8px rgba(0,0,0,0.2);
+    flex-wrap:wrap;
        
    }
 
-.active-slide{
+@media screen and (max-width:600px){
+    .home-nav-active{
+        width:100%;
+    }
+    
+  .home-nav{
+    width:100%;
+}
+
+    .slide-frame{
+        width:100%;
+    }
+    
+    
+}
+
+
+.slideUp{
     transition:1s ease;  
     position:absolute;
     animation:animate  7s linear infinite;
-    animation-delay:2s;
+    animation-delay:1s;
+    animation-fill-mode:forwards;
     opacity: 0;
     pointer-events: none;
+}
+
+.current{
+    opacity:1;
 }
 
 .left-img{
@@ -142,6 +266,6 @@ align-items:flex-start;
    
     65%, 100%{
       opacity: 1;
-      transform: translateY(-120%) ;
+      transform: translateY(-150%) ;
     }
   }

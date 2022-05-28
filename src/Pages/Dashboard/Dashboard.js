@@ -20,10 +20,6 @@ function Dashboard() {
       <div  className="dashboard-userTable">
       <UserTable/>
       </div>
-      
-      <div>
-     statistics
-      </div>
       </div>
 
     </div>

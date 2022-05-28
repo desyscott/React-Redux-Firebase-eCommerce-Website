@@ -3,6 +3,7 @@
     height:100vw;
     width:100%;
     padding:2rem;
+    height:100%;
 
 
 }
@@ -22,7 +23,7 @@ color:rgb(121, 117, 117);
 .dashboard-container{
     display:grid;
     grid-template-columns: repeat(2,1fr);
-    grid-template-rows:repeat(4,minmax(10rem,auto));
+    grid-template-rows:repeat(2,minmax(10rem,auto));
     grid-row-gap:30px;
     grid-column-gap:40px;
 }

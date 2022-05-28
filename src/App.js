@@ -5,8 +5,8 @@ import {
 } from "react-router-dom";
 import AdminPage from "./Pages/Admin/AdminPage"
 import Home from "./Pages/Home/Home"
-import Products from "./Components/Products/Products"
 import Dashboard from "./Pages/Dashboard/Dashboard"
+import Products from "./Pages/Products/Products"
 import "./GlobalStyle.css"
 
 

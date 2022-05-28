@@ -1,4 +1,27 @@
-
 .btn{
-    text-decoration: none;
+    border:none;
+    outline:none;
+    border-radius:2.5px;
+    color:#000;
+    text-transform: capitalize;
+    padding:0.3rem 0.25rem;
+    cursor:pointer;
+    transition:padding 0.2s ease-out;
+}
+
+.primary-btn{
+    padding: .7rem 1rem;
+    cursor: pointer;
+    background: #fff;
+    border: none;
+    color: #000;
+    font-size: 1rem;
+    transition: color, background 0.3s ease-in;
+    text-transform: uppercase;
+    transition:.8s ease-out;
+}
+.primary-btn:hover{
+
+    background: rgb(218, 217, 217);
+
 }

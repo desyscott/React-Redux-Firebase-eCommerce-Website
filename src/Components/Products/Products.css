@@ -1,3 +1,84 @@
-.project-container{
-    display: flex;
+ .ProductsContainer{
+width:100%;
+min-height:90vh;
+padding:5rem calc((100vw-1300px)/2);
+background:#150f0f;
+color:#fff;
+
+ }
+
+
+ .ProductsHeading {
+font-size:clamp(2rem, 2.5vw, 3rem);
+text-align:center;
+position:relative;
+top:20px;
+font-weight:1000;
+margin-bottom:5rem;
+letter-spacing:5px;
+}
+.ProductWrapper {
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+margin:0 auto;
+}
+
+.ProductCard {
+margin:0 2rem;
+line-height:2;
+width:300px;
+
+}
+.ProductImg {
+height:290px;
+min-width:250px;
+max-width:100%;
+box-shadow:8px 8px #fdc500;
+cursor:pointer;
+transition:transform 0.3s ease-in;
+
+}
+
+.ProductImg:hover{
+    transform:scale(1.1);   
+}
+
+.ProductInfo{
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+padding:2rem;
+text-align:center;
+}
+.ProductTitle {
+font-weight:400;
+font-size:1.5rem;
+}
+.ProductDesc {
+margin-bottom:1rem;
+
+}
+.ProductPrice{
+margin-bottom:1rem;
+font-size:2rem;
+font-weight:500;
+}
+.ProductBtn{
+font-size:1rem;
+padding:1rem 4rem;
+border:none;
+font-weight:500;
+background:#e31837;
+color:#fff;
+transition:background,color,cursor,0.2s ease-out;
+}
+
+
+.ProductBtn:hover{
+    background:#ffc500;
+    cursor:pointer;
+    color:#000; 
+
 }
