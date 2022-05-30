@@ -1,0 +1,96 @@
+
+.home-nav{
+    height: 80px;
+    width: 100%;
+    margin:auto;
+    padding:35px;
+    position: fixed;
+    background-color:transparent;
+    top:0;
+    left:0;
+    right:0;
+    box-shadow: var(--box-shadow);
+    display: flex;
+    justify-content: space-between;
+    text-transform: uppercase;
+    align-items: center;
+    z-index:10000;
+    transition: background 400ms cubic-bezier(0.64,0.04,0.26,0.87); 
+    
+    
+ 
+}
+
+.nav-active{
+    background:#000;
+
+}
+
+.nav-logo{
+    text-decoration: none;
+    font-size:1.6rem;
+    font-weight:bolder;
+    color:#fff; 
+    letter-spacing:1px;
+}
+.logo-icon{
+    margin-right: 8px;
+     color:"#ffff";
+
+
+}
+
+.Nav-Items{
+    display: flex;
+    list-style: none;
+
+}
+
+.Nav-Items li .nav-link{
+    padding:3px 10px;
+    font-weight:400;
+    font-size:1.1rem;
+    letter-spacing:0.5px;
+    color:#fff;
+    text-decoration:none ;  
+}
+.nav-link{
+    position:relative;
+}
+
+
+.nav-link::before{
+    content:"";
+    position:absolute;
+    bottom:0;
+    right:0;
+    left:0;
+    background:rgb(5, 187, 117);
+    height:4px;
+  transform: scaleX(0);
+    transition: transform .3s ease-in-out;  
+ 
+}
+
+.nav-link:hover::before{
+    transform: scaleX(1);
+}
+
+
+
+.nav-button{
+    display:grid;
+    grid-template-columns: auto auto;
+    gap: 25px;
+    
+    
+}
+.login-btn{
+    text-transform: uppercase;
+    text-decoration:none;
+    transform:translateY(10px);
+    color:#fff;
+    cursor:pointer;
+}
+ 
+ 

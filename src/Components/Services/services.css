@@ -1,6 +1,6 @@
 .servicesContainer{
     width:100%;
-    min-height:90vh;
+    /* min-height:50vh; */
     padding:3rem calc((100vw-1300px)/2);
     background:#f4e8e8;
     color:#000;
@@ -13,7 +13,7 @@
     position:relative;
     top:20px;
     font-weight:600;
-    margin-bottom:3rem;
+    margin-bottom:2rem;
     letter-spacing:5px;
     }
     .servicesWrapper {
@@ -25,23 +25,25 @@
     
     .servicesCard {
     margin:2rem 1rem;
-    line-height:2;
+    line-height:1.5;
     width:350px;
-    /* padding:1rem 1rem; */
+    padding:3rem 2rem;
     background: #fff;
-    /* outline:1rem solid rgba(0,0,0,.1);
-    outline-offset: -1rem; */
+    outline:var(--outline);
     text-align: center;
     box-shadow:0 .2rem 1rem rgba(0,0,0,.1);
     border-radius:4px;
+    transition:transform 0.3s ease-in;
+    }
+    .servicesCard:hover{
+    outline:var(--outline-hover);
+    transform:scale(1);  
 
-    
     }
     .servicesImg {
-    padding-top:2rem;
     cursor:pointer;
     margin:.1rem 0;
-    height: 14rem;
+    height: 10rem;
     transition:transform 0.3s ease-in;
     
     }
@@ -49,39 +51,43 @@
     .servicesImg:hover{
         transform:scale(1.1);   
     }
-    
+    .servicesTitle {
+        font-weight:400;
+        font-size: 1.5rem;
+        line-height: 1.8;
+        color:var(--black);
+        }
     .servicesInfo{
     display:flex;
     flex-direction:column;
     justify-content:center;
     align-items:center;
-    padding:2rem;
     text-align:center;
     }
-    .servicesTitle {
-    font-weight:500;
-    font-size: 1.5rem;
-    line-height: 1.8;
-    }
+ 
     .servicesDesc {
     margin-bottom:.5rem;
+    line-height: 1.8;
+    color:var(--medium-gray);
+    font-size:.9rem;
     }
   
     .servicesBtn{
+        display: inline;
     font-size:1rem;
-    padding:.5rem 1rem;
-    border:none;
+    padding:.4rem 2rem;
+    border:.2rem solid var(--black);
     font-weight:500;
-    background:#31876d;
-    color:#fff;
+    background:none;
+    color:var(--black);
     transition:background,color,cursor,0.2s ease-out;
     }
     
     
     .servicesBtn:hover{
-        background:#ffc500;
+        background:var(--green-color);
         cursor:pointer;
-        color:#000; 
+        color:#fff; 
     
     }
     

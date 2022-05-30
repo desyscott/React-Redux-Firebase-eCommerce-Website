@@ -1,0 +1,94 @@
+.CategoryContainer{
+    width:100%;
+    min-height:90vh;
+    padding:5rem calc((100vw-1300px)/2);
+    background:linear-gradient(to right,#161c1b,#35554e);
+    color:#fff;
+    
+     }
+    
+    
+     .CategoryHeading {
+    font-size:clamp(2rem, 2.5vw, 3rem);
+    text-align:center;
+    position:relative;
+    top:20px;
+    font-weight:1000;
+    margin-bottom:4rem;
+    letter-spacing:5px;
+    }
+    .CategoryWrapper {
+    display:grid;
+    grid-template-columns: repeat(4,21rem);
+    flex-wrap:wrap;
+    justify-content:center;
+    align-items:center;
+    margin:0 auto;
+    }
+    
+    .CategoryCard {
+    margin:0 1rem;
+    line-height:2;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+ 
+    
+    }
+    .CategoryImg {
+    height:230px;
+    min-width:200px;
+    max-width:100%;
+    box-shadow:8px 8px #fdc500;
+    cursor:pointer;
+    transition:transform 0.3s ease-in;
+    
+    }
+    
+    .CategoryImg:hover{
+        transform:scale(1.1);   
+    }
+    
+    .CategoryInfo{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    /* align-items:center; */
+    padding:1.5rem; 
+    text-align:center;
+    }
+    .CategoryTitle {
+    font-weight:300;
+    font-size:1.5rem;
+    }
+    .CategoryDesc {
+    margin-bottom:1rem;
+    color:var(--light-gray);
+    font-size:1.1rem;
+    
+    }
+    .CategoryPrice{
+    margin-bottom:1rem;
+    font-size:1.6rem;
+    font-weight:500;
+    }
+    .CategoryBtn{
+    font-size:1rem;
+    padding:1rem .5rem;
+    border:none;
+    margin-bottom:2rem;
+    font-weight:500;
+    background:#e31837;
+    color:#fff;
+    transition:background,color,cursor,0.2s ease-out;
+    }
+    
+    
+    .CategoryBtn:hover{
+        background:#ffc500;
+        cursor:pointer;
+        color:#000; 
+    
+    }
+    

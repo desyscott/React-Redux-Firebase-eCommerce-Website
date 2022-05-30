@@ -4,6 +4,7 @@ import "./Feature.css"
 import "../../Components/Button/Button.css"
 
 
+
 function ImageSlider({featureData}) {
   const [currentSlide,setCurrentSlide]=useState(0)
   const length= featureData.length;

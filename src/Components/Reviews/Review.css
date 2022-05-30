@@ -1,0 +1,94 @@
+.reviewContainer{
+    width:100%;
+    min-height:60vh;
+    padding:5rem calc((100vw-1300px)/2);
+    background:linear-gradient(to right,#161c1b,#35554e);
+    color:#fff;
+    
+     }
+    
+    
+     .reviewHeading {
+    font-size:clamp(2rem, 2.5vw, 3rem);
+    text-align:center;
+    position:relative;
+    top:20px;
+    font-weight:1000;
+    margin-bottom:3rem;
+    letter-spacing:5px;
+    }
+     
+        .reviewWrapper {
+        display:flex;
+        flex-wrap:wrap;
+        justify-content:center;
+        margin:0 auto;
+        }
+        
+        .reviewCard {
+            margin:2rem 1rem;
+            line-height:1.5;
+            width:350px;
+            padding:3rem 2rem;
+            background: #fff;
+            outline:var(--outline);
+            text-align: center;
+            box-shadow:0 .2rem 1rem rgba(0,0,0,.1);
+            border-radius:4px;
+            transition:transform 0.3s ease-in;
+        
+        }
+        .reviewImg {
+        height:7rem;
+        width:7rem;
+        border-radius: 50%;
+        cursor:pointer;
+        transition:transform 0.3s ease-in;
+        
+        }
+        
+        .reviewImg:hover{
+            transform:scale(1.1);   
+        }
+        
+        .reviewInfo{
+        display:flex;
+        flex-direction:column;
+        justify-content:center;
+        text-align:center;
+        }
+        .reviewTitle {
+        font-weight:400;
+        font-size:1.5rem;
+        color:var(--black);
+        margin-bottom:1rem;
+        }
+        .reviewDesc {
+        margin-bottom:1.2rem;
+        color:var(--medium-gray);
+        font-size:1rem;
+        }
+/*         
+        .reviewPrice{
+        margin-bottom:1rem;
+        font-size:2rem;
+        font-weight:500;
+        }
+        .reviewBtn{
+        font-size:1rem;
+        padding:1rem 4rem;
+        border:none;
+        font-weight:500;
+        background:#e31837;
+        color:#fff;
+        transition:background,color,cursor,0.2s ease-out;
+        }
+        
+        
+        .reviewBtn:hover{
+            background:#ffc500;
+            cursor:pointer;
+            color:#000; 
+        
+        }
+         */
