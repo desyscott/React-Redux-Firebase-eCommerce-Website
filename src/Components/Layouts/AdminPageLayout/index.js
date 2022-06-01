@@ -1,18 +1,15 @@
 import React,{useRef,useEffect,useState} from "react"
-import NavBar from "../../Components/NavBar/NavBar"
-import SideBar from "../../Components/SideBar/SideBar"
+import NavBar from "../../DashboardNav/index"
+import SideBar from "../../SideBar/SideBar"
 import  "./Admin.css"
-import "../../GlobalStyle.css"
-import { orders} from "./OrdersItems"
-import {FaDollarSign} from "react-icons/fa"
-import {BsGraphUp}from "react-icons/bs"
-import {BsCartCheckFill}from "react-icons/bs"
-import {GrDiamond}from "react-icons/gr"
-import Products from "../../Components/Products/Products"
-import Dashboard from "../Dashboard/Dashboard"
 
 
-const AdminPage =()=>{
+
+
+
+
+const AdminPage =(props)=>{
+  const {currentUser} = props
   const [open,setOpen]=useState(false)
   
   const toggle =()=>{
@@ -58,7 +55,7 @@ const AdminPage =()=>{
           <NavBar toggle= {toggle} open={open} MouseClick={MouseClick} showDropDown={showDropDown} notification={notification} notificationToggle={notificationToggle}/>
           <div className="container">
           <SideBar toggle={toggle } open={open}/>
-          <Dashboard/>
+          {props.children}
         </div>
         </div>
         </div>  

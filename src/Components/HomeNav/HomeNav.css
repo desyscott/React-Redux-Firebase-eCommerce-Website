@@ -5,7 +5,7 @@
     margin:auto;
     padding:35px;
     position: fixed;
-    background-color:transparent;
+    background:linear-gradient(to right,#212c23,#8ab592);
     top:0;
     left:0;
     right:0;
@@ -21,8 +21,12 @@
  
 }
 
-.nav-active{
+.nav-active {
     background:#000;
+
+}
+.nav-active  .nav-logo{
+color:#fff;
 
 }
 
@@ -30,7 +34,7 @@
     text-decoration: none;
     font-size:1.6rem;
     font-weight:bolder;
-    color:#fff; 
+    color:rgb(1, 1, 1); 
     letter-spacing:1px;
 }
 .logo-icon{

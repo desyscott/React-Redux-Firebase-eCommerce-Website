@@ -17,7 +17,7 @@ import googleplayImg from "../../Components/images/googleplay-btn.png"
 import HomeNav from "../../Components/HomeNav/HomeNav"
 
 
-function Home() {
+function Home({currentUser}) {
   const [currentSlide,setCurrentSlide]=useState(0)
   const slideLength =slideHeroData.Length;        
      //slideLength 1 2 3
@@ -62,7 +62,8 @@ function Home() {
   return (
     <div className="home-container">
     <ScrollToTopButton/>
-    <HomeNav  Categories ={Categories} products={products} Reviews ={Reviews }  Features={ Features} />
+    {/* <HomeNav  Categories ={Categories} products={products} Reviews ={Reviews }  Features={ Features}  currentUser={currentUser}/> */}
+    
     <div className="Hero-container">
   
 

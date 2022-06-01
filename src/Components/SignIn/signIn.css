@@ -1,0 +1,54 @@
+.signIn{
+    display:block;
+    width:100%; 
+    max-width:40.0rem; 
+    margin:10rem auto 6rem;
+    border:1px solid black;
+}
+.signIn-wrapper{
+    padding: 10px;
+}
+
+.signIn-header{
+    font-size:2rem ;
+    line-height:1;
+    font-weight:400;
+    text-transform:uppercase;
+    text-align:center;
+    display:block;
+    width:100%;
+    padding:0;
+    margin:0 auto 3rem;
+    
+}
+
+
+.loginBtn{
+  width:40%;
+  height:3rem;
+  font-size:1.2rem;
+  background-color:var(--light-gray);
+  
+}
+.loginBtn:hover{
+  background-color:var(--medium-gray);
+  color:#fff;
+}
+
+
+.loginBtn-wrapper{
+  margin: .5rem auto 2rem 0;
+  text-align:center;
+  
+}
+  .socialSignin {
+    margin: .5rem auto 0;
+    text-align:center;
+  }
+  
+  
+  .links {
+    display: block;
+    width: 100%;
+    margin: 1.5rem auto 0;
+  }
