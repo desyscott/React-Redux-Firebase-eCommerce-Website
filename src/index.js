@@ -1,18 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from "react-router-dom";
+
+import { Provider } from "react-redux";
+import store from "./Components/Redux/Store/index"
 import App from './App';
 
 
 
 ReactDOM.render(
-  <>
-
+  <Provider store={store}>
+{/* The provider makes the redux store available to our entire apllication */}
 < BrowserRouter>
     <App />
     </BrowserRouter>
     
-  </>,
+  </Provider>,
   document.getElementById('root')
 );
 

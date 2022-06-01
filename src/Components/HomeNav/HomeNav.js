@@ -1,12 +1,18 @@
-import React,{useState,useEffect,useRef} from 'react'
+import React,{useState,useEffect} from 'react'
 import {Link} from "react-router-dom"
 import "./HomeNav.css"
 import { BsCart4} from "react-icons/bs";
 
+
+import {connect} from "react-redux"
+import {auth} from "../../Firebase"
+import { signOut } from 'firebase/auth';
+
+
+
 const  HomeNav=(props)=>{
   const {Categories,products, Features,Reviews ,currentUser}=props
-  
-  console.log({currentUser:currentUser})
+
     const [scroll, setScroll] = useState(false)
       
    const ScrollToSection=(elementRef)=>{
@@ -14,7 +20,6 @@ const  HomeNav=(props)=>{
       top:elementRef.current.offsetTop,
       behavior:"smooth",
     })
-    
   }
    
   const ChangeNavBackground = () => {
@@ -23,7 +28,6 @@ const  HomeNav=(props)=>{
     } else {
       setScroll(false);
     }
-    // console.log(window.scrollY);
   };
 
   
@@ -31,6 +35,16 @@ const  HomeNav=(props)=>{
     // setCurrentSlide(0)
     window.addEventListener("scroll", ChangeNavBackground);
   }, []);
+  
+  
+  const handleSignOut=()=>{
+    signOut(auth).then((authUser)=>{
+      console.log(authUser)
+      
+    }).catch((err)=>{
+      console.log(err)
+    })
+  }
   
  
   return (
@@ -57,7 +71,7 @@ const  HomeNav=(props)=>{
     </ul>
     
      <div className="nav-button">
-    <Link className="login-btn" to="/login">logOut</Link>
+    <button className="btn" onClick={handleSignOut}>logOut</button>
     </div>
     </>) }
       
@@ -77,4 +91,10 @@ HomeNav.defaultProps={
   currentUser: null
 }
 
-export default HomeNav
+
+const mapStateToProps = ({User})=>({
+  currentUser:User.currentUser
+})
+ 
+
+export default connect(mapStateToProps,null) (HomeNav)

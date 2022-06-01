@@ -2,11 +2,10 @@ import React from 'react'
 import HomeNav from "../../HomeNav/HomeNav"
 
 const MainLayout=(props)=>{
-  
-  const {currentUser} =props
+
   return (
     <div className="main-layout">
-    <HomeNav  currentUser={currentUser}/>
+    <HomeNav  {...props}/>
     <div>
    {props.children}
    </div>

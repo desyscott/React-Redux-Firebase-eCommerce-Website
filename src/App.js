@@ -1,9 +1,10 @@
-import React,{Component} from "react"
+import React,{useState,useEffect,useRef} from "react"
 import {
   Switch,
   Route,
   Redirect,
 } from "react-router-dom";
+import "./GlobalStyle.css"
 
 //layouts
 import AdminPageLayout from "./Components/Layouts/AdminPageLayout/index"
@@ -15,71 +16,62 @@ import Home from "./Pages/Home/Home"
 import Dashboard from "./Pages/Dashboard/Dashboard"
 import Products from "./Pages/Products/Products"
 import Login from "./Pages/Login/Login"
-import "./GlobalStyle.css"
 
-
-import { Provider } from "react-redux";
-import store from "./Components/Redux/Store/index"
+import {connect} from "react-redux"
+import {setCurrentUser} from "./Components/Redux/Reducer/userReducer/userAction"
 import {auth} from "./Firebase"
 import {onAuthStateChanged} from "firebase/auth"
 
 
-const initialState={
-  currentUser: null
-}
-class App  extends Component {
-  
-  constructor(props){
-    super(props);
-    this.state={
-      ...initialState,
-    }
-  }
-  
-  authListener=null
-  componentDidMount(){
-    this.authListener= onAuthStateChanged(auth,(authUser)=>{
-      if(!authUser)return;
-      
-      this.setState({
-        currentUser: authUser
-      })
+
+function  App  (props){
+   const {setCurrentUser,currentUser}=props
    
-    })
-  }
-  componentWillUnmount(){
-    this.authListener()
-  }
-  
- render() {
-  const {currentUser} = this.state
+   const Categories =useRef(null)
+   const products =useRef(null)
+   const Features =useRef(null)
+   const Reviews =useRef(null)
+   
+   //Listening for auth State change of User
+   useEffect(()=>{
+        const unsubscribe = onAuthStateChanged(auth,(authUser)=>{
+          if(!authUser) {
+            setCurrentUser(null)
+          }
+          
+            setCurrentUser(authUser)
+          
+        })
+return unsubscribe
+   },[])
 
   return (
-    <Provider store={store}>
+    <>
     <Switch>
-    
     <Route  path="/" exact  render={()=> (
-         <MainLayout currentUser={currentUser}>
-         <Home/>
+         <MainLayout  Categories ={Categories} products={products} Reviews ={Reviews }  Features={ Features}>
+         <Home  Categories={Categories}  products ={ products} Features={Features} Reviews={Reviews}/>
       </MainLayout>
    
     )}/>
     
+
+    
     <Route path="/dashboard" render={()=>(
-      <AdminPageLayout  currentUser={currentUser}>
+      <AdminPageLayout >
       <Dashboard/>
       </AdminPageLayout>
       
     )}/>
     <Route path="/products" render={()=>(
-      <AdminPageLayout currentUser={currentUser}>
+      <AdminPageLayout >
       <Products/>
       </AdminPageLayout>
       
     )}/>
     
-    <Route path="/login" render={()=>currentUser?<Redirect to="/"/> :(
-         <MainLayout currentUser={currentUser}>
+    <Route path="/login" render={()=> currentUser? <Redirect to="/"/> :(
+         <MainLayout>
       <Login/>
       </MainLayout>
    
@@ -87,9 +79,18 @@ class App  extends Component {
 
     </Switch>
     
-    </Provider>
+    </>
   );
 }
-}
 
-export default App;
+
+const mapStateToProps = ({User})=>({
+  currentUser:User.currentUser
+})
+ 
+ //Dispatch an action  to be use in our payload to update our state
+const mapDispatchToProps = (dispatch)=>({
+  setCurrentUser:(user) =>dispatch(setCurrentUser(user))
+})
+ 
+export default connect(mapStateToProps, mapDispatchToProps) (App);

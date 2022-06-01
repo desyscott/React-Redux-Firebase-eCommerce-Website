@@ -1,7 +1,7 @@
 import React,{useRef,useEffect,useState} from "react"
 import NavBar from "../../DashboardNav/index"
 import SideBar from "../../SideBar/SideBar"
-import  "./Admin.css"
+import  "./AdminLayout.css"
 
 
 

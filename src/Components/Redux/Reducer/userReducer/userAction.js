@@ -1,31 +1,29 @@
 
-//Redux action is an action with a type and payload
-
-import {USER_STATE_CHANGE} from "./usersType"
+import {USER_STATE_CHANGE} from "./userTypes"
 import {auth,db} from "../../../../Firebase"
 
 
-
-const fetchUsersAction=(userInfo)=>{
+//redux action is function that return payload and type
+export const setCurrentUser =(user)=>{
     return{
         type:USER_STATE_CHANGE,
-        payLoad:userInfo,
+        payLoad:user,
     }
 }
 
-export function fetchUser() {
-    return (dispatch) => {
-      db.collection("users")
-        .doc(auth.currentUser.uid)
-        .get()
-        .then((snapshot) => {
-          if (snapshot.exists) {
-            const userInfo=snapshot.data()
-            dispatch(fetchUsersAction(userInfo))
-          } else {
-            console.log("does not exist");
-          }
-        });
-    };
-  }
+// export function fetchUser() {
+//     return (dispatch) => {
+//       db.collection("users")
+//         .doc(auth.currentUser.uid)
+//         .get()
+//         .then((snapshot) => {
+//           if (snapshot.exists) {
+//             const userInfo=snapshot.data()
+//             dispatch(fetchUsersAction(userInfo))
+//           } else {
+//             console.log("does not exist");
+//           }
+//         });
+//     };
+//   }
     

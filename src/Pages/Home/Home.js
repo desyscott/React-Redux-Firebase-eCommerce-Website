@@ -14,20 +14,17 @@ import "../../Components/Button/Button.css"
 import ScrollToTopButton from "../../Components/ScrollToButton/ScrollToTop"
 import appStoreImg from "../../Components/images/appstore-btn.png"
 import googleplayImg from "../../Components/images/googleplay-btn.png"
-import HomeNav from "../../Components/HomeNav/HomeNav"
 
 
-function Home({currentUser}) {
+function Home(props) {
+  const {Categories,products,Features,Reviews }=props
+  
+  
   const [currentSlide,setCurrentSlide]=useState(0)
   const slideLength =slideHeroData.Length;        
      //slideLength 1 2 3
   //currentSlide 0 1 2
 
-  
-  const Categories =useRef(null)
-  const products =useRef(null)
-  const Features =useRef(null)
-  const Reviews =useRef(null)
 
   const nextSlide=()=>{
     setCurrentSlide(currentSlide===slideLength-1? 0: currentSlide+1)
@@ -62,8 +59,6 @@ function Home({currentUser}) {
   return (
     <div className="home-container">
     <ScrollToTopButton/>
-    {/* <HomeNav  Categories ={Categories} products={products} Reviews ={Reviews }  Features={ Features}  currentUser={currentUser}/> */}
-    
     <div className="Hero-container">
   
 
