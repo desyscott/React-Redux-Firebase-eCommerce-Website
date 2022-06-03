@@ -96,3 +96,17 @@
 }
  
  
+ .myAcc-btn{
+     text-decoration: none;
+     text-transform: capitalize;
+     color:#fff;
+ }
+ 
+ .myAcc-btn:hover{
+     color:var(--black);
+ }
+
+ .logout-btn:hover{
+     background-color: #c6cac8;
+ }
+ 

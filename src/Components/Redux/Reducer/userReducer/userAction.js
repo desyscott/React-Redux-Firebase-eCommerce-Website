@@ -1,6 +1,6 @@
 
 import {USER_STATE_CHANGE} from "./userTypes"
-import {auth,db} from "../../../../Firebase"
+
 
 
 //redux action is function that return payload and type

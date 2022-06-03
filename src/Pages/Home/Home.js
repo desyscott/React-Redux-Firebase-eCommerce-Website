@@ -2,6 +2,7 @@ import React,{useState,useEffect,useRef} from 'react'
 import "../../Components/Button/Button.css"
 import "../Home/Home.css"
 import Feature from "../../Components/Feature/Feature"
+import {Link} from "react-router-dom"
 import {featureData} from "../../Components/Feature/featureData"
 import HeroImg from "../../Components/images/bg-1.png"
 import {slideHeroData} from "../../Components/Feature/featureData"
@@ -66,7 +67,7 @@ function Home(props) {
     <div className="Hero-item" >
                 <h1 className="heroH1">Order Your Daily Groceries</h1>
                 <p className="heroP"> Free Delivery</p>
-                <button className="btn HeroBtn">Get Started</button>
+                <Link className="btn HeroBtn" to="/dashboard">Get Started</Link>
                 <div className="download-btn">
                 <img src={appStoreImg} alt="" className="appStore-btn"/>
                 <img src={googleplayImg} alt="" className="appStore-btn"/>

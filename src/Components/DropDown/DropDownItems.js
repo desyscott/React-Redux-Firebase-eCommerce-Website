@@ -21,7 +21,7 @@ export const DropDownItems = [
       icon: <MdSettingsPower size={17}/>,
   title:"Sign Out",
   path:"/signOut",
-  cName:"drop-link"
+  cName:"drop-link",
     
 },
  ]

@@ -4,49 +4,44 @@ import {GoogleButton} from "react-google-button"
 
 import "./signIn.css"
 import FormInput from "../FormInput/index"
+import {withRouter} from "react-router-dom"
 
 
 import {auth} from "../../Firebase"
-
 import { signInWithEmailAndPassword,  GoogleAuthProvider, signInWithPopup,  signInWithRedirect,} from "firebase/auth";
 
-const googleSignIn = () => {
-  const provider = new GoogleAuthProvider();
-  provider.setCustomParameters({ prompt: 'select_account' });
-  signInWithPopup(auth, provider);
-  // signInWithRedirect(auth, provider)
-};
 
-
-const SignIn=()=> {
-  const [input,setInput]=useState({
-    email:"",
-    password:"",
-  })
+const SignIn=(props)=> {
   
-  const handleChange=(e)=>{
-     const {name,value} =e.target
-     
-     setInput({
-       [name]:value
-     })
+  
+  const googleSignIn = () => {
+    const provider = new GoogleAuthProvider();
+    provider.setCustomParameters({ prompt: 'select_account' });
+    signInWithPopup(auth, provider);
+    // signInWithRedirect(auth, provider)
+  };
+  
+  
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('')
+  
+
+  
+  const resetForm =()=>{
+    setEmail('');
+    setPassword('');
   }
     
     const handleSubmit=async(e)=> {
-      e.prevent.default()
-      const{email,password} = input
-      
+      e.preventDefault()
+   
       try{
        await signInWithEmailAndPassword(auth,email,password);
-       setInput({
-        email:"",
-        password:"",
-       })
-        
+       resetForm();
+       props.history.push("/");
       }catch(err){
         console.log(err)
       }
-      
       }
 
     
@@ -59,17 +54,17 @@ const SignIn=()=> {
     
     <form onSubmit={handleSubmit} >
         < FormInput
-        handleChange={handleChange}
         name="email:"
         type="text"
-        value={input.email}
+        value={email}
+        handleChange={e => setEmail(e.target.value)}
         placeholder="Enter your email"/>
         
         < FormInput
-        handleChange={handleChange}
         name="password:"
         type="password"
-        value={input.password}
+        value={password}
+        handleChange={e => setPassword(e.target.value)}
         placeholder="Enter your password "/>
         
         <div className="loginBtn-wrapper">
@@ -98,4 +93,4 @@ const SignIn=()=> {
   )
 }
 
-export default SignIn
+export default withRouter(SignIn)

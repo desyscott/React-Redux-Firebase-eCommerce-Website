@@ -71,14 +71,15 @@ const  HomeNav=(props)=>{
     </ul>
     
      <div className="nav-button">
-    <button className="btn" onClick={handleSignOut}>logOut</button>
+    <Link className="myAcc-btn" to="/dashboard" >my account</Link>
+    <button className="btn logout-btn" onClick={handleSignOut}>logOut</button>
     </div>
     </>) }
       
        {!currentUser &&  (
       <div className="nav-button">
     <Link className="login-btn" to="/login">login</Link>
-    <button className="btn primary-btn">get started</button>
+    <Link className="btn primary-btn" to="/register" >get started</Link>
     </div>
     )}
    

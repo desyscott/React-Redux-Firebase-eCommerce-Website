@@ -3,6 +3,7 @@ import{ DropDownItems} from "./DropDownItems"
 import {Link} from "react-router-dom"
 import "./DropDown.css"
 
+import {signOut} from "firebase/auth"
 function Dropdown() {
     const [click,setClick] = useState(false)
   
@@ -13,6 +14,15 @@ function Dropdown() {
     const closeDropDownMenu =()=>{
       setClick(false)
     }
+    
+    // const handleSignOut=()=>{
+//   signOut(auth).then((authUser)=>{
+//     console.log(authUser)
+    
+//   }).catch((err)=>{
+//     console.log(err)
+//   })
+// }
     return (
         <>
         <ul onClick={handleClick} className={click? "dropdown-menu clicked":"dropdown-menu"}>

@@ -1,6 +1,6 @@
 import{initializeApp} from 'firebase/app';
 import {getAuth} from 'firebase/auth';
-import {getFirestore} from  'firebase/firestore';
+import {getFirestore,collection,doc,getDoc,updateDoc,setDoc} from  'firebase/firestore';
 import {getStorage} from 'firebase/storage'; 
 
 // const firebaseConfig = { 
@@ -35,8 +35,35 @@ const  storage =getStorage(firebaseApp)
 
 export {auth ,db,storage}
 
-// export const GoogleProvider = new GoogleAuthProvider();
-// GoogleProvider.setCustomParameters({ prompt: 'select_account' });
-// export const signInWithGoogle =()=>auth.signInWithPopup(GoogleProvider);
-
+export const handleUserProfile=async(authUser,additionalData)=>{
+  if(!authUser) return;
+  
+  //if the user exist
+  const {uid} =authUser;
+  
+  const userRef= doc(db,`users/${uid}`);
+ const snapShot =  await getDoc(userRef)
+ 
+ 
+ //if  user does not exists 
+ if(!snapShot.exist){
+   const {email,name}=authUser;
+   const Timestamp=new Date()
+   
+   try{
+     
+    await setDoc(userRef, {
+      email,
+      name,
+      createdDate:Timestamp,
+      ...additionalData
+    });
+     
+   }catch(err){
+     console.log(err)
+   }
+ } 
+ 
+ return userRef
+}
 

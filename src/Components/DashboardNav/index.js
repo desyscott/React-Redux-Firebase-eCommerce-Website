@@ -18,6 +18,8 @@ import Notification from "../Notification/index"
 
 
 
+
+
 function NavBar({toggle,open,showDropDown, notification,MouseClick,notificationToggle}) {
   
    const [input,setInput]=useState("")
@@ -29,6 +31,10 @@ const handleChange=(event)=>{
 setInput(event.target.value);
   
 }
+
+  
+
+
   return (
     <>
     <div className="nav" >

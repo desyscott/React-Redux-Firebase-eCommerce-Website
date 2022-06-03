@@ -6,11 +6,11 @@
     border:1px solid black;
 }
 .signIn-wrapper{
-    padding: 10px;
+    padding: 5px;
 }
 
 .signIn-header{
-    font-size:2rem ;
+    font-size:1.7rem ;
     line-height:1;
     font-weight:400;
     text-transform:uppercase;
