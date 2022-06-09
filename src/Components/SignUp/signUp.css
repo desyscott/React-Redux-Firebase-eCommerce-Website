@@ -1,29 +1,3 @@
-.signUp{
-    display:block;
-    width:100%; 
-    max-width:40.0rem; 
-    margin:10rem auto 6rem;
-    border:1px solid black;
-}
-
-.signUp-wrapper{
-    padding: 10px;
-}
-
-.signUp-header{
-    font-size:1.7rem ;
-    line-height:1;
-    font-weight:400;
-    text-transform:uppercase;
-    text-align:center;
-    display:block;
-    width:100%;
-    padding:0;
-    margin:0 auto 3rem;
-    
-}
-
-
 .signUpBtn{
     width:40%;
     height:3rem;

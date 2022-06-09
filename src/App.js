@@ -2,7 +2,6 @@ import {useEffect,useRef} from "react"
 import {
   Switch,
   Route,
-  Redirect,
 } from "react-router-dom";
 import "./GlobalStyle.css"
 
@@ -16,13 +15,16 @@ import Dashboard from "./Pages/Dashboard/Dashboard"
 import Products from "./Pages/Products/Products"
 import Login from "./Pages/Login/Login"
 import Register from "./Pages/Register/Register"
+import ForgetPassword from "./Pages/ForgetPassword/ForgetPassword"
 
 //redux
 import {connect} from "react-redux"
 import {setCurrentUser} from "./Components/Redux/Reducer/userReducer/userAction"
 
 
-import AuthContext from "./Components/context/AuthContext"
+import WithAuth from "./Components/context/WIthAuth"
+import WithAdminAuth from "./Components/context/WithAdminAuth"
+
 
 //Firebase
 import {auth,handleUserProfile} from "./Firebase"
@@ -31,16 +33,15 @@ import {onAuthStateChanged} from "firebase/auth"
 
 
 
-
 const App =(props)=>{
-   const {setCurrentUser,currentUser}=props
+   const {setCurrentUser}=props
    
    const Categories =useRef(null)
    const products =useRef(null)
    const Features =useRef(null)
    const Reviews =useRef(null)
    
-   //Listening for auth State change of User
+   //Listening for auth State change of User to update the store
    useEffect(()=>{
         const unsubscribe = onAuthStateChanged(auth,async(authUser)=>{
           if(authUser) {
@@ -58,6 +59,7 @@ const App =(props)=>{
           } 
         
         })
+        //to clear the useEffect and start afresh whenever the page is unmount or refresh
 return unsubscribe
    },[])
 
@@ -74,38 +76,43 @@ return unsubscribe
 
     
     <Route path="/dashboard" render={()=>(
-      <AuthContext>
+     // <WithAdminAuth>
       <AdminPageLayout >
       <Dashboard/>
       </AdminPageLayout>
-      </AuthContext>
+      //</WithAdminAuth>
       
     )}/>
     <Route path="/products" render={()=>(
-            <AuthContext>
+            <WithAuth>
       <AdminPageLayout >
       <Products/>
       </AdminPageLayout>
-      </AuthContext>
+      </WithAuth>
       
     )}/>
     
-    <Route path="/register" render={()=> currentUser? <Redirect to="/"/> :(
+    <Route path="/register" render={()=> (
          <MainLayout>
       <Register/>
       </MainLayout>
    
     )}/>
     
-    <Route path="/login" render={()=> currentUser? <Redirect to="/"/> :(
+    <Route path="/login" render={()=>(
          <MainLayout>
       <Login/>
       </MainLayout>
    
     )}/>
+    
+    <Route path="/forgetPassword" render={()=>(
+     <MainLayout>
+     <ForgetPassword/>
+     </MainLayout>
+    )}/>
 
     </Switch>
-    
     </>
   );
 }

@@ -3,6 +3,7 @@ import "./signUp.css"
 
 import {Link,withRouter} from "react-router-dom"
 import  FormInput from "../FormInput/index"
+import AuthContainer from "../AuthContainer/index"
 
 import {auth,handleUserProfile} from "../../Firebase"
 import {createUserWithEmailAndPassword} from "firebase/auth"
@@ -30,12 +31,13 @@ const SignUp=(props)=>{
    
    if(password !==confirmPassword){
      const err = ["password don't match"]
-     setErrors({
-       errors: err
-     });
+     setErrors(err);
+     console.log(errors)
      return;
+   
    }
-   console.log(errors)
+   
+  
    try{
      const {user}=await createUserWithEmailAndPassword(auth,email,password)
      await handleUserProfile(user,{name})
@@ -43,25 +45,24 @@ const SignUp=(props)=>{
    resetForm();
      
    }catch(error){
-     console.log(error)
+     console.log(errors)
      
    }   
   }
 
-
+const configAuthContainer={
+  headline:"Sign Up"
+}
   
   return (
     <>
-    <div className="signUp">
-    
-   <div className="signUp-wrapper">
-   <h3 className="signUp-header">Sign Up</h3>
+     <AuthContainer {...configAuthContainer}>
    {errors.length > 0 && (
           <ul>
-            {errors.map((error, index) => {
+            {errors.map((err, index) => {
               return (
                 <li key={index}>
-                  {error}
+                  {err}
                 </li>
               );
             })}
@@ -70,6 +71,7 @@ const SignUp=(props)=>{
    <form onSubmit={handleSubmit}>
         < FormInput
         name="name"
+        required
         type="text"
         value={name}
         handleChange={e => setName(e.target.value)}
@@ -77,20 +79,22 @@ const SignUp=(props)=>{
         
         < FormInput
         name="email"
-        type="text"
+        required
+        type="email"
         value={email}
         handleChange={e => setEmail(e.target.value)}
         placeholder="Enter your email "/>
         
         < FormInput
-        name="password:"
+        name="password"
         type="password"
+        required
         value={password}
         handleChange={e => setPassword(e.target.value)}
         placeholder="Enter your password "/>
         
         < FormInput
-        name="password:"
+        name="password"
         type="password"
         value={confirmPassword}
         handleChange={e => setConfirmPassword(e.target.value)}
@@ -111,9 +115,8 @@ const SignUp=(props)=>{
           </div>
 
         </form>
+        </AuthContainer>
    
-   </div>  
-    </div>
     </>
   )
 }

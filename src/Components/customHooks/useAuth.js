@@ -5,7 +5,7 @@ const mapState=({User})=>({
     currentUser:User.currentUser
 })
 
-
+//checking if user is login 
 const useAuth=(props)=>{
   const {currentUser}=useSelector(mapState)
     

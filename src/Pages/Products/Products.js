@@ -81,7 +81,10 @@ useEffect(()=>{
   
     snapshot.docs.map((doc)=>(
       setProducts(snapshot.docs.map((doc)=>(
-        doc.data()
+      {
+        data:doc.data(),
+        userID:doc.id
+       }
       )))
     ))
     
@@ -91,10 +94,11 @@ useEffect(()=>{
 console.log(products)
 
 
-const{productID}=products
+const {userID}=products
 
 const deleteProduct=()=>{
-   const docRef=doc(db,"addProducts", productID)
+   const docRef=doc(db,"addProducts", userID)
+   
    deleteDoc(docRef).then(()=>{
      console.log("document deleted")
    }).catch((err)=>{
@@ -192,16 +196,20 @@ const deleteProduct=()=>{
 
 <div className="manageProducts">
   <h3 className="manageProducts-header">Manage Products</h3>
-  {products.map(product =>{
-    const{title,price,imageUri}=product
+  {products.map(({userID,data:{title,price,imageUri}})=>{
+    {/* const{title,price,imageUri}=product */}
     
 return(
-  <div className="newProduct-container">
+  <div className="newProduct-container"  key={userID}>
   <div className="newProduct-wrapper">
     <img src={imageUri} alt="" className="imgUri"/>
     <p className="product-name">{title}</p>
     <p className="product-price">${price}</p>
-    <button className="btn deleteBtn" onClick={deleteProduct}>Delete</button>
+    <button className="btn deleteBtn" onClick={()=>
+      
+   
+   deleteDoc(doc(db,"addProducts", userID))
+   }>Delete</button>
     </div>
     </div>
 )   

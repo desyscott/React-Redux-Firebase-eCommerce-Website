@@ -80,8 +80,9 @@
   }
   
   .deleteBtn{
-    background-color:rgb(251, 95, 95);
+    background-color:rgb(241, 138, 138);
   }
   .deleteBtn:hover{
-    background-color:rgb(251, 95, 95);
+    background-color:rgb(182, 52, 52);
+    color:#fff;
   }

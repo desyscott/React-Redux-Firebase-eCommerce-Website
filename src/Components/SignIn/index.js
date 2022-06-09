@@ -4,6 +4,7 @@ import {GoogleButton} from "react-google-button"
 
 import "./signIn.css"
 import FormInput from "../FormInput/index"
+import AuthContainer from "../AuthContainer/index"
 import {withRouter} from "react-router-dom"
 
 
@@ -43,29 +44,32 @@ const SignIn=(props)=> {
         console.log(err)
       }
       }
+    
+    const configAuthContainer ={
+      headline:"Login"
+    }
 
     
   return (
-    <div className="signIn">
-<div className="signIn-wrapper">
-    
-    <h3 className="signIn-header">Login</h3>
+        <AuthContainer  {...configAuthContainer}>
     <div className="form-wrapper">
     
     <form onSubmit={handleSubmit} >
         < FormInput
-        name="email:"
-        type="text"
+        name="email"
+        required
+        type="email"
         value={email}
         handleChange={e => setEmail(e.target.value)}
         placeholder="Enter your email"/>
         
         < FormInput
-        name="password:"
+        name="password"
+        required
         type="password"
         value={password}
         handleChange={e => setPassword(e.target.value)}
-        placeholder="Enter your password "/>
+        placeholder="Enter your password"/>
         
         <div className="loginBtn-wrapper">
         <button className="btn loginBtn" type="submit">
@@ -78,8 +82,8 @@ const SignIn=(props)=> {
        
 
           <div className="links">
-            <Link to="/recovery">
-              Reset Password
+            <Link to="/forgetPassword">
+              Forget Password
             </Link>
           </div>
 
@@ -87,9 +91,7 @@ const SignIn=(props)=> {
     
     
     </div>
-    </div> 
-    
-      </div>
+</AuthContainer>
   )
 }
 
