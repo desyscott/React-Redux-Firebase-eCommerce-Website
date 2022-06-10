@@ -1,49 +1,52 @@
-import React,{useState} from 'react'
-import {Link} from "react-router-dom"
+import React,{useState,useEffect} from 'react'
+import {Link, withRouter} from "react-router-dom"
 import {GoogleButton} from "react-google-button"
 
 import "./signIn.css"
 import FormInput from "../FormInput/index"
 import AuthContainer from "../AuthContainer/index"
-import {withRouter} from "react-router-dom"
 
 
-import {auth} from "../../Firebase"
-import { signInWithEmailAndPassword,  GoogleAuthProvider, signInWithPopup,  signInWithRedirect,} from "firebase/auth";
+//redux,
+import  {signInUser,signInWIthGoogle,resetAllAuthForms } from "../Redux/Reducer/userReducer/userAction"
+import {useSelector,useDispatch} from "react-redux"
 
+
+const mapState=({User})=>({
+  signInSuccess:User.signInSuccess
+})
 
 const SignIn=(props)=> {
-  
-  
-  const googleSignIn = () => {
-    const provider = new GoogleAuthProvider();
-    provider.setCustomParameters({ prompt: 'select_account' });
-    signInWithPopup(auth, provider);
-    // signInWithRedirect(auth, provider)
-  };
-  
+  const {signInSuccess}=useSelector(mapState)
+   const dispatch =useDispatch()
+
   
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('')
   
-
+  useEffect(()=>{
+    if(signInSuccess){
+       resetForm();
+     dispatch( resetAllAuthForms())
+      props.history.push("/");
+    }
+  },[signInSuccess])
   
   const resetForm =()=>{
     setEmail('');
     setPassword('');
   }
+  
+
     
-    const handleSubmit=async(e)=> {
+    const handleSubmit=(e)=> {
       e.preventDefault()
-   
-      try{
-       await signInWithEmailAndPassword(auth,email,password);
-       resetForm();
-       props.history.push("/");
-      }catch(err){
-        console.log(err)
+      dispatch(signInUser ({email,password}))
       }
-      }
+    
+ const handleGoogleSignIn = () => {
+   dispatch(signInWIthGoogle())
+      };
     
     const configAuthContainer ={
       headline:"Login"
@@ -78,7 +81,7 @@ const SignIn=(props)=> {
           </div>
         
    
-             <GoogleButton  className="socialSignin" onClick={ googleSignIn }/>
+             <GoogleButton  className="socialSignin" onClick={ handleGoogleSignIn }/>
        
 
           <div className="links">

@@ -18,7 +18,7 @@ import Register from "./Pages/Register/Register"
 import ForgetPassword from "./Pages/ForgetPassword/ForgetPassword"
 
 //redux
-import {connect} from "react-redux"
+import {useDispatch} from "react-redux"
 import {setCurrentUser} from "./Components/Redux/Reducer/userReducer/userAction"
 
 
@@ -33,8 +33,8 @@ import {onAuthStateChanged} from "firebase/auth"
 
 
 
-const App =(props)=>{
-   const {setCurrentUser}=props
+const App =()=>{
+  const dispatch = useDispatch()
    
    const Categories =useRef(null)
    const products =useRef(null)
@@ -47,17 +47,17 @@ const App =(props)=>{
           if(authUser) {
             const userRef = await handleUserProfile(authUser);
             onSnapshot(userRef,(snapshot)=>{
-              setCurrentUser({
-                id:snapshot.id,
-                ...snapshot.data()
-              })
+             dispatch( setCurrentUser({
+              id:snapshot.id,
+              ...snapshot.data()
+            })
+            )
             })
          
           }
         else{
-            setCurrentUser(null)
+            dispatch(setCurrentUser(null))
           } 
-        
         })
         //to clear the useEffect and start afresh whenever the page is unmount or refresh
 return unsubscribe
@@ -116,15 +116,4 @@ return unsubscribe
     </>
   );
 }
-
-
-const mapStateToProps = ({User})=>({
-  currentUser:User.currentUser
-})
- 
- //Dispatch an action  to be use in our payload to update our state
-const mapDispatchToProps = (dispatch)=>({
-  setCurrentUser:(user) =>dispatch(setCurrentUser(user))
-})
- 
-export default connect(mapStateToProps, mapDispatchToProps) (App);
+export default App;

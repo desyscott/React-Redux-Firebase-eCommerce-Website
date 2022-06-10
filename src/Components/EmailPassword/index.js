@@ -1,41 +1,52 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import "./EmailPassword.css"
 import AuthContainer from "../AuthContainer/index"
 import FormInput from "../FormInput/index"
 import {withRouter} from "react-router-dom";
 
-import {auth} from "../../Firebase"
-import {sendPasswordResetEmail} from "firebase/auth"
+
+
+//redux
+import {resetPassword,resetAllAuthForms} from "../Redux/Reducer/userReducer/userAction"
+import {useSelector,useDispatch} from "react-redux"
+
+const mapState=({User})=>({
+    resetPasswordSuccess:User.resetPasswordSuccess,
+    resetPasswordError:User.resetPasswordError
+})
 
 function EmailPassword(props) {
+      const dispatch =useDispatch()
+      const {resetPasswordSuccess, resetPasswordError} =useSelector(mapState)
+      
     const [email,setEmail]=useState("")
     const [error,setError]=useState([])
+    
+    
+    useEffect(()=>{
+        if(resetPasswordSuccess){ 
+             formReset()
+             dispatch(resetAllAuthForms())
+            props.history.push("/login")
+       
+        }
+    },[resetPasswordSuccess])
+    
+    useEffect(()=>{
+        if(Array.isArray(resetPasswordError) && resetPasswordError.length > 0 ){
+            setError(resetPasswordError)
+        }
+    },[ resetPasswordError])
     
     
     const formReset=()=>{
        setEmail("") 
     }
     
-    const config={
-        url: "http://localhost:3000/login"
-    }
-    const handleSubmit=async(e)=>{
+ 
+    const handleSubmit=(e)=>{
         e.preventDefault()
-        try{
-            await sendPasswordResetEmail(auth,email,config).then(()=>{
-                props.history.push("/login")
-                
-            }).catch(()=>{
-                const err=["Email is not found"];
-                setError(err)
-                   console.log(err)
-            })
-         
-            formReset()
-        }catch(err){
-            console.log(err)
-        }
-    
+        dispatch(resetPassword({email}))
     }
     
     const configAuthContainer={

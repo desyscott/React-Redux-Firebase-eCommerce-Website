@@ -1,15 +1,23 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import "./signUp.css"
 
 import {Link,withRouter} from "react-router-dom"
 import  FormInput from "../FormInput/index"
 import AuthContainer from "../AuthContainer/index"
 
-import {auth,handleUserProfile} from "../../Firebase"
-import {createUserWithEmailAndPassword} from "firebase/auth"
 
+//redux
+import {signUpUser,resetAllAuthForms } from "../Redux/Reducer/userReducer/userAction"
+import {useSelector,useDispatch} from "react-redux"
+
+const mapState=({User})=>({
+  signUpError:User.signUpError,
+  signUpSuccess:User.signUpSuccess,
+})
 
 const SignUp=(props)=>{
+  const dispatch=useDispatch()
+  const {signUpSuccess,signUpError}=useSelector(mapState)
   
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -17,6 +25,22 @@ const SignUp=(props)=>{
   const [confirmPassword, setConfirmPassword] = useState('');
   const [errors, setErrors] = useState([]);
 
+   
+   useEffect(()=>{
+     if(signUpSuccess){
+       resetForm();
+     dispatch( resetAllAuthForms())
+       props.history.push("/")
+     }
+   },[signUpSuccess])
+   
+   useEffect(()=>{
+     if(Array.isArray(signUpError) && signUpError.length >0 ){
+       setErrors(signUpError)
+     }
+   },[signUpError])
+   
+   
    
   const resetForm =()=>{
     setName('');
@@ -26,28 +50,30 @@ const SignUp=(props)=>{
     setErrors([]);
     }
  
-  const handleSubmit=async(e)=>{
+  const handleSubmit=(e)=>{
    e.preventDefault()
    
-   if(password !==confirmPassword){
-     const err = ["password don't match"]
-     setErrors(err);
-     console.log(errors)
-     return;
+   dispatch(signUpUser({name,email,password,confirmPassword}))
    
-   }
+  //  if(password !==confirmPassword){
+  //    const err = ["password don't match"]
+  //    setErrors(err);
+  //    console.log(errors)
+  //    return;
+   
+  //  }
    
   
-   try{
-     const {user}=await createUserWithEmailAndPassword(auth,email,password)
-     await handleUserProfile(user,{name})
+  //  try{
+  //    const {user}=await createUserWithEmailAndPassword(auth,email,password)
+  //    await handleUserProfile(user,{name})
 
-   resetForm();
+  //  resetForm();
      
-   }catch(error){
-     console.log(errors)
+  //  }catch(error){
+  //    console.log(errors)
      
-   }   
+  //  }   
   }
 
 const configAuthContainer={

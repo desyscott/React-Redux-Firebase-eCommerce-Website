@@ -3,15 +3,24 @@ import {Link} from "react-router-dom"
 import "./HomeNav.css"
 import { BsCart4} from "react-icons/bs";
 
-
-import {connect} from "react-redux"
+//firebase
 import {auth} from "../../Firebase"
 import { signOut } from 'firebase/auth';
 
+//redux
+import {useSelector,useDispatch} from "react-redux"
 
+const mapState= ({User})=>({
+  currentUser:User.currentUser,
+})
+ 
 
 const  HomeNav=(props)=>{
-  const {Categories,products, Features,Reviews ,currentUser}=props
+  const dispatch=useDispatch()
+  const {currentUser}=useSelector(mapState)
+  
+  
+  const {Categories,products, Features,Reviews }=props
 
     const [scroll, setScroll] = useState(false)
       
@@ -39,6 +48,7 @@ const  HomeNav=(props)=>{
   
   const handleSignOut=()=>{
     signOut(auth).then((authUser)=>{
+    
       console.log(authUser)
       
     }).catch((err)=>{
@@ -92,10 +102,4 @@ HomeNav.defaultProps={
   currentUser: null
 }
 
-
-const mapStateToProps = ({User})=>({
-  currentUser:User.currentUser
-})
- 
-
-export default connect(mapStateToProps,null) (HomeNav)
+export default  HomeNav
