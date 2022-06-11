@@ -3,9 +3,7 @@ import {Link} from "react-router-dom"
 import "./HomeNav.css"
 import { BsCart4} from "react-icons/bs";
 
-//firebase
-import {auth} from "../../Firebase"
-import { signOut } from 'firebase/auth';
+import { signOutStart} from "../Redux/Reducer/userReducer/userAction.js"
 
 //redux
 import {useSelector,useDispatch} from "react-redux"
@@ -47,13 +45,7 @@ const  HomeNav=(props)=>{
   
   
   const handleSignOut=()=>{
-    signOut(auth).then((authUser)=>{
-    
-      console.log(authUser)
-      
-    }).catch((err)=>{
-      console.log(err)
-    })
+   dispatch( signOutStart())
   }
   
  

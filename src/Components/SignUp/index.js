@@ -1,23 +1,25 @@
 import React,{useState,useEffect} from 'react'
 import "./signUp.css"
 
-import {Link,withRouter} from "react-router-dom"
+import {Link,useHistory} from "react-router-dom"
 import  FormInput from "../FormInput/index"
 import AuthContainer from "../AuthContainer/index"
 
 
 //redux
-import {signUpUser,resetAllAuthForms } from "../Redux/Reducer/userReducer/userAction"
+import {signUpUserStart} from "../Redux/Reducer/userReducer/userAction"
 import {useSelector,useDispatch} from "react-redux"
 
 const mapState=({User})=>({
+  currentUser:User.currentUser,
   signUpError:User.signUpError,
-  signUpSuccess:User.signUpSuccess,
+
 })
 
-const SignUp=(props)=>{
+const SignUp=()=>{
+  const history=useHistory()
   const dispatch=useDispatch()
-  const {signUpSuccess,signUpError}=useSelector(mapState)
+  const {currentUser,signUpError}=useSelector(mapState)
   
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -27,12 +29,11 @@ const SignUp=(props)=>{
 
    
    useEffect(()=>{
-     if(signUpSuccess){
+     if(currentUser){
        resetForm();
-     dispatch( resetAllAuthForms())
-       props.history.push("/")
+       history.push("/")
      }
-   },[signUpSuccess])
+   },[currentUser])
    
    useEffect(()=>{
      if(Array.isArray(signUpError) && signUpError.length >0 ){
@@ -52,28 +53,7 @@ const SignUp=(props)=>{
  
   const handleSubmit=(e)=>{
    e.preventDefault()
-   
-   dispatch(signUpUser({name,email,password,confirmPassword}))
-   
-  //  if(password !==confirmPassword){
-  //    const err = ["password don't match"]
-  //    setErrors(err);
-  //    console.log(errors)
-  //    return;
-   
-  //  }
-   
-  
-  //  try{
-  //    const {user}=await createUserWithEmailAndPassword(auth,email,password)
-  //    await handleUserProfile(user,{name})
-
-  //  resetForm();
-     
-  //  }catch(error){
-  //    console.log(errors)
-     
-  //  }   
+   dispatch(signUpUserStart({name,email,password,confirmPassword}))  
   }
 
 const configAuthContainer={
@@ -147,4 +127,4 @@ const configAuthContainer={
   )
 }
 
-export default withRouter(SignUp);
+export default SignUp;

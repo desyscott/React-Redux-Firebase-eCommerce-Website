@@ -6,7 +6,7 @@
     padding:35px;
     position: fixed;
     background:linear-gradient(to right,#212c23,#8ab592);
-    top:0;
+    /* top:0; */
     left:0;
     right:0;
     box-shadow: var(--box-shadow);

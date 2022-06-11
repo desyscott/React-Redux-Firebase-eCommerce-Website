@@ -1,5 +1,5 @@
 import{initializeApp} from 'firebase/app';
-import {getAuth} from 'firebase/auth';
+import {getAuth,onAuthStateChanged} from 'firebase/auth';
 import {getFirestore,collection,doc,getDoc,updateDoc,setDoc} from  'firebase/firestore';
 import {getStorage} from 'firebase/storage'; 
 
@@ -24,18 +24,14 @@ const firebaseConfig = {
     appId: "1:249719529249:web:350251df1889a48049a860"
   };
 
-
 const firebaseApp =initializeApp(firebaseConfig);
 const  auth =getAuth(firebaseApp)
 const  db =getFirestore(firebaseApp)
 const  storage =getStorage(firebaseApp)
 
-
-
-
 export {auth ,db,storage}
 
-export const handleUserProfile=async(authUser,additionalData)=>{
+export const handleUserProfile=async({authUser,additionalData})=>{
   if(!authUser) return;
   
   //if the user exist
@@ -69,3 +65,13 @@ export const handleUserProfile=async(authUser,additionalData)=>{
  return userRef
 }
 
+
+///
+export  const getCurrentUser =()=>{
+  return new Promise((resolve,reject)=>{
+    const unsubscribe = onAuthStateChanged(auth,(authUser)=>{
+      unsubscribe();
+      resolve(authUser)
+    },reject)
+  })
+}

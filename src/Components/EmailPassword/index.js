@@ -2,12 +2,12 @@ import React,{useState,useEffect} from 'react'
 import "./EmailPassword.css"
 import AuthContainer from "../AuthContainer/index"
 import FormInput from "../FormInput/index"
-import {withRouter} from "react-router-dom";
+import {useHistory} from "react-router-dom";
 
 
 
 //redux
-import {resetPassword,resetAllAuthForms} from "../Redux/Reducer/userReducer/userAction"
+import { resetPasswordStart,resetUserState} from "../Redux/Reducer/userReducer/userAction"
 import {useSelector,useDispatch} from "react-redux"
 
 const mapState=({User})=>({
@@ -16,6 +16,7 @@ const mapState=({User})=>({
 })
 
 function EmailPassword(props) {
+      const history=useHistory()
       const dispatch =useDispatch()
       const {resetPasswordSuccess, resetPasswordError} =useSelector(mapState)
       
@@ -26,8 +27,8 @@ function EmailPassword(props) {
     useEffect(()=>{
         if(resetPasswordSuccess){ 
              formReset()
-             dispatch(resetAllAuthForms())
-            props.history.push("/login")
+         dispatch (resetUserState())
+          history.push("/login")
        
         }
     },[resetPasswordSuccess])
@@ -46,7 +47,7 @@ function EmailPassword(props) {
  
     const handleSubmit=(e)=>{
         e.preventDefault()
-        dispatch(resetPassword({email}))
+        dispatch( resetPasswordStart({email}))
     }
     
     const configAuthContainer={
@@ -82,4 +83,4 @@ function EmailPassword(props) {
   )
 }
 
-export default withRouter(EmailPassword)
+export default EmailPassword

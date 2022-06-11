@@ -8,7 +8,7 @@ import "./GlobalStyle.css"
 //layouts
 import AdminPageLayout from "./Components/Layouts/AdminPageLayout/index"
 import MainLayout from "./Components/Layouts/MainLayout/index"
-
+import AdminToolbar from "./Components/AdminToolbar/index"
 //pages
 import Home from "./Pages/Home/Home"
 import Dashboard from "./Pages/Dashboard/Dashboard"
@@ -19,18 +19,11 @@ import ForgetPassword from "./Pages/ForgetPassword/ForgetPassword"
 
 //redux
 import {useDispatch} from "react-redux"
-import {setCurrentUser} from "./Components/Redux/Reducer/userReducer/userAction"
+import {checkUserSession} from "./Components/Redux/Reducer/userReducer/userAction"
 
 
 import WithAuth from "./Components/context/WIthAuth"
 import WithAdminAuth from "./Components/context/WithAdminAuth"
-
-
-//Firebase
-import {auth,handleUserProfile} from "./Firebase"
-import {onSnapshot} from "firebase/firestore"
-import {onAuthStateChanged} from "firebase/auth"
-
 
 
 const App =()=>{
@@ -41,30 +34,14 @@ const App =()=>{
    const Features =useRef(null)
    const Reviews =useRef(null)
    
-   //Listening for auth State change of User to update the store
    useEffect(()=>{
-        const unsubscribe = onAuthStateChanged(auth,async(authUser)=>{
-          if(authUser) {
-            const userRef = await handleUserProfile(authUser);
-            onSnapshot(userRef,(snapshot)=>{
-             dispatch( setCurrentUser({
-              id:snapshot.id,
-              ...snapshot.data()
-            })
-            )
-            })
-         
-          }
-        else{
-            dispatch(setCurrentUser(null))
-          } 
-        })
-        //to clear the useEffect and start afresh whenever the page is unmount or refresh
-return unsubscribe
+    dispatch(checkUserSession())
    },[])
+
 
   return (
     <>
+    <AdminToolbar/>
     <Switch>
     <Route  path="/" exact  render={()=> (
          <MainLayout  Categories ={Categories} products={products} Reviews ={Reviews }  Features={ Features}>
@@ -76,11 +53,11 @@ return unsubscribe
 
     
     <Route path="/dashboard" render={()=>(
-     // <WithAdminAuth>
+     <WithAdminAuth>
       <AdminPageLayout >
       <Dashboard/>
       </AdminPageLayout>
-      //</WithAdminAuth>
+      </WithAdminAuth>
       
     )}/>
     <Route path="/products" render={()=>(
