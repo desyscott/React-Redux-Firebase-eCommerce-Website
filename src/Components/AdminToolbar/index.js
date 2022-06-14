@@ -15,7 +15,7 @@ function AdminToolbar() {
     if(!AdminRight) return null
   return (
     <div>
-    <ul><li>  <Link>Admin</Link></li></ul>
+    <ul><li>  <Link to="/dashboard">Admin</Link></li></ul>
   
     </div>
   )

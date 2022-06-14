@@ -9,7 +9,7 @@ const mapState=({User})=>({
 
 const useAdminAuth=(props)=>{
             const {currentUser} = useSelector(mapState)
-            const history =useHistory()
+            const history=useHistory()
             
   ///takes the current user and checks if the user is an admin          
     useEffect(()=>{

@@ -37,7 +37,7 @@ export const handleUserProfile=async({authUser,additionalData})=>{
   //if the user exist
   const {uid} =authUser;
   
-  const userRef= doc(db,`users/${uid}`);
+  const userRef= doc(db,'users',`${uid}`);
  const snapShot =  await getDoc(userRef)
  
  

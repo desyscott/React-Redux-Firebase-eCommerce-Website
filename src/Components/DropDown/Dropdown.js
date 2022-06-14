@@ -15,7 +15,7 @@ function Dropdown() {
       setClick(false)
     }
     
-    // const handleSignOut=()=>{
+//     const handleSignOut=()=>{
 //   signOut(auth).then((authUser)=>{
 //     console.log(authUser)
     

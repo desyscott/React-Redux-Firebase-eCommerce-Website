@@ -19,7 +19,7 @@ export const SideBarItems =[
 },
 {
     title:"Products",
-    path:"/products",
+    path:"/manageProducts",
     cName:"sidebar-Links ",
     icon:<AiFillShop size={24}/>
 
@@ -27,13 +27,13 @@ export const SideBarItems =[
 },
 {
     title:"Orders",
-    // path:"/orders",
+    path:"/orders",
     cName:"sidebar-Links ",
     icon:<HiShoppingCart size={24}/>
 },
 {
     title:"Customers",
-    // path:"/customers",
+    path:"/customers",
     cName:"sidebar-Links ",
     icon:<FaUsers size={24}/>
 },

@@ -2,7 +2,8 @@ import React,{useState,useEffect} from 'react'
 import {Link} from "react-router-dom"
 import "./HomeNav.css"
 import { BsCart4} from "react-icons/bs";
-
+import { GrCart } from 'react-icons/gr';
+import AdminToolbar from "../AdminToolbar/index"
 import { signOutStart} from "../Redux/Reducer/userReducer/userAction.js"
 
 //redux
@@ -51,10 +52,11 @@ const  HomeNav=(props)=>{
  
   return (
     <>
+ <AdminToolbar/> 
         <nav className={scroll ? "home-nav nav-active":"home-nav"}>
-    
+       
     <div className="nav-logo-container" >
-    <Link   className="nav-logo" to="/"><BsCart4  size={30}  className="logo-icon" />Gro Mart </Link>
+    <Link   className="nav-logo" to="/">Gro Mart </Link>
     </div>
     
      {currentUser &&  (
@@ -81,6 +83,7 @@ const  HomeNav=(props)=>{
        {!currentUser &&  (
       <div className="nav-button">
     <Link className="login-btn" to="/login">login</Link>
+    {/* <Link className="" to="/cart"><GrCart/></Link> */}
     <Link className="btn primary-btn" to="/register" >get started</Link>
     </div>
     )}

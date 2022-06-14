@@ -1,7 +1,10 @@
 
  const productsTypes ={
-      ADD_NEW_PRODUCTS:"ADD_NEW_PRODUCTS"
+      ADD_NEW_PRODUCTS_START:" ADD_NEW_PRODUCTS_START",
+      FETCH_PRODUCTS_START:"FETCH_PRODUCTS_START",
+     SET_PRODUCTS_START:" SET_PRODUCTS_START",
+     DELETE_PRODUCTS_START:"DELETE_PRODUCTS_START"
     
     
 }
-export default productsTypes;
+export default productsTypes

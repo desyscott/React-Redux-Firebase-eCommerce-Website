@@ -8,14 +8,15 @@ import "./GlobalStyle.css"
 //layouts
 import AdminPageLayout from "./Components/Layouts/AdminPageLayout/index"
 import MainLayout from "./Components/Layouts/MainLayout/index"
-import AdminToolbar from "./Components/AdminToolbar/index"
+
 //pages
 import Home from "./Pages/Home/Home"
 import Dashboard from "./Pages/Dashboard/Dashboard"
-import Products from "./Pages/Products/Products"
+import ManageProducts from "./Pages/ManageProducts/ManageProducts"
 import Login from "./Pages/Login/Login"
 import Register from "./Pages/Register/Register"
 import ForgetPassword from "./Pages/ForgetPassword/ForgetPassword"
+import Search from "./Pages/Search/Search"
 
 //redux
 import {useDispatch} from "react-redux"
@@ -41,7 +42,6 @@ const App =()=>{
 
   return (
     <>
-    <AdminToolbar/>
     <Switch>
     <Route  path="/" exact  render={()=> (
          <MainLayout  Categories ={Categories} products={products} Reviews ={Reviews }  Features={ Features}>
@@ -50,24 +50,39 @@ const App =()=>{
    
     )}/>
     
-
+    <Route exact path="/search" render={()=>(
+       <MainLayout>
+      <Search/>
+      </MainLayout> 
+   ) }/>
+    
+     {/*The  url params */}
+    <Route path="/search/:filterType" render={()=>(
+           <MainLayout>
+      <Search/>
+      </MainLayout>
+    )}/>
+    
     
     <Route path="/dashboard" render={()=>(
      <WithAdminAuth>
       <AdminPageLayout >
       <Dashboard/>
       </AdminPageLayout>
-      </WithAdminAuth>
+   </WithAdminAuth>
       
     )}/>
-    <Route path="/products" render={()=>(
-            <WithAuth>
+    
+
+    <Route path="/manageProducts" render={()=>(
+             <WithAdminAuth>
       <AdminPageLayout >
-      <Products/>
+      <ManageProducts/>
       </AdminPageLayout>
-      </WithAuth>
-      
+      </WithAdminAuth>
     )}/>
+    
+  
     
     <Route path="/register" render={()=> (
          <MainLayout>

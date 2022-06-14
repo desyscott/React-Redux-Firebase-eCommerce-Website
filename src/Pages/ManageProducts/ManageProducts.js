@@ -1,19 +1,24 @@
 import React,{useState,useEffect} from 'react'
-import {useDispatch} from "react-redux"
-import {addNewProducts} from "../../Components/Redux/Reducer/productsReducer/productsAction"
-import "./Products.css"
+import {useSelector,useDispatch} from "react-redux"
+import {addNewProductsStart, fetchProductsStart,deleteProductStart} from "../../Components/Redux/Reducer/productsReducer/productsAction"
+import "./index.css"
 import Modal from "../../Components/Modal/index"
 import {CKEditor} from 'ckeditor4-react';
 
 import FormInput from "../../Components/FormInput/index"
 import FormSelect from "../../Components/FormSelect/index"
+import LoadMoreButton from "../../Components/LoadMoreButton/index"
 
-import {auth,db} from "../../Firebase"
-import {addDoc,collection,onSnapshot,doc, deleteDoc} from "firebase/firestore"
+const mapState=({ProductsData})=>({
+  products:ProductsData.products
+})
 
-function Products() {
-  const dispatch =useDispatch();
-  const [products, setProducts] = useState([]);
+
+function ManageProducts() {
+  const {products}=useSelector(mapState)
+  const dispatch = useDispatch();
+  const {data,queryDoc, isLastPage}=products
+  
 const [hideModal, setHideModal] = useState(true);
 
 //local state
@@ -33,6 +38,12 @@ const configModal = {
   toggleModal
 };
 
+//fetch the products from the redux store as soon as the component unmount
+useEffect(()=>{
+  dispatch( fetchProductsStart())
+  },[])
+  
+  
 const ResetForm=()=>{
   setHideModal(true)
   setCategory("fruit");
@@ -42,76 +53,37 @@ const ResetForm=()=>{
   setDiscount("");
   setTitle("");
 }
+
 const handleSubmit = e => {
   e.preventDefault();
   
-// dispatch(
-//   addNewProducts({
-//     productCategory,
-//     productName,
-//     productThumbnail,
-//     productPrice,
-//   })
-// );
-
-const timestamp = new Date();
-
-addDoc(collection(db,"addProducts"),{
-  category,
- description,
- imageUri,
-  price,
- discount,
- title,
- id : auth.currentUser.uid,
- createdDate:timestamp,
- 
- }).then((result)=>{
-     console.log(result)
- }).catch((err)=>{
-     console.log(err)
- })
-
+dispatch(
+  addNewProductsStart({
+category,
+title,
+description,
+imageUri,
+ price,
+discount,
+  })
+);
 ResetForm()
-
 }
 
-useEffect(()=>{
- const unsubscribe= onSnapshot(collection (db,"addProducts"),(snapshot)=>(
-  
-    snapshot.docs.map((doc)=>(
-      setProducts(snapshot.docs.map((doc)=>(
-      {
-        data:doc.data(),
-        userID:doc.id
-       }
-      )))
-    ))
-    
- ))   
-  return unsubscribe;
-},[])
-console.log(products)
-
-
-const {userID}=products
-
-const deleteProduct=()=>{
-   const docRef=doc(db,"addProducts", userID)
-   
-   deleteDoc(docRef).then(()=>{
-     console.log("document deleted")
-   }).catch((err)=>{
-     console.log(err)
-   })
+const handleLoadMore=()=>{
+      dispatch(fetchProductsStart({
+        startAfterDoc:queryDoc,
+        persistProducts:data
+      }))
 }
 
+const configLoadMore={
+        onLoadMoreEvt:handleLoadMore
+}
   return (
     <>
-    <div className="product-container">
-
+    <div className="manageProduct-container">
 <div className="callToActions">
- 
       <button className="btn callToActions-btn" onClick={() => toggleModal()}>
         Add new product
       </button>
@@ -128,12 +100,13 @@ const deleteProduct=()=>{
 
             <FormSelect
               label="Category"
-              options={[{
-                value: "vegetables",
-                name: "Vegetables"
-              }, {
+              options={[ {
                 value: "fruits",
                 name: "Fruits"
+              },
+              {
+                value: "vegetables",
+                name: "Vegetables"
               },
               {
                 value: "meats",
@@ -183,45 +156,37 @@ const deleteProduct=()=>{
               <CKEditor
               onChange={evt => setDescription(evt.editor.getData())}
             />
-
             <br />
 
             <button type="submit">
               Add product
             </button>
-
           </form>
         </div>
 </Modal>
 
 <div className="manageProducts">
   <h3 className="manageProducts-header">Manage Products</h3>
-  {products.map(({userID,data:{title,price,imageUri}})=>{
-    {/* const{title,price,imageUri}=product */}
-    
+  {(Array.isArray(data) && data.length > 0) && data.map((product)=>{
+    const{title,price,imageUri,documentID}=product
+  
 return(
-  <div className="newProduct-container"  key={userID}>
+  <div className="newProduct-container"  key={documentID}>
   <div className="newProduct-wrapper">
     <img src={imageUri} alt="" className="imgUri"/>
     <p className="product-name">{title}</p>
     <p className="product-price">${price}</p>
-    <button className="btn deleteBtn" onClick={()=>
-      
-   
-   deleteDoc(doc(db,"addProducts", userID))
-   }>Delete</button>
+    <button className="btn deleteBtn" onClick={()=>dispatch(deleteProductStart(documentID))}>Delete</button>
     </div>
     </div>
-)   
-  })}
+    )})}
+</div>
+      {  
+       !isLastPage &&
+     ( <LoadMoreButton {...configLoadMore}/>)
+       }
 
 </div>
-
-
-</div>
-
     </>
-  )
-}
-
-export default Products
+  )}
+export default ManageProducts

@@ -1,20 +1,7 @@
-/* .product-container{
-    height:100vh;
-    width:100%;
-    position:relative;
-}
 
-.hero-product{
-    height: 100vh;
-    background:linear-gradient(to right,#e3e9e4,#ddede0);
-    color:#fff;
-    z-index: 1;
-    color:var(--black);
-} */
-
-
-.product-container{
+.manageProduct-container{
     padding: 0 10px;
+    height:100vh;
   
   }
   .callToActions {
