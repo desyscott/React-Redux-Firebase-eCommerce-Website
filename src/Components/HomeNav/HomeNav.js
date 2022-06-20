@@ -5,18 +5,20 @@ import { BsCart4} from "react-icons/bs";
 import { GrCart } from 'react-icons/gr';
 import AdminToolbar from "../AdminToolbar/index"
 import { signOutStart} from "../Redux/Reducer/userReducer/userAction.js"
+import {selectCartItemCount} from "../Redux/Reducer/cartsReducer/cartSelector"
 
 //redux
 import {useSelector,useDispatch} from "react-redux"
 
-const mapState= ({User})=>({
-  currentUser:User.currentUser,
+const mapState= (state)=>({
+  currentUser:state.User.currentUser,
+  totalNumCartItems:selectCartItemCount(state)
 })
  
 
 const  HomeNav=(props)=>{
   const dispatch=useDispatch()
-  const {currentUser}=useSelector(mapState)
+  const {currentUser,  totalNumCartItems}=useSelector(mapState)
   
   
   const {Categories,products, Features,Reviews }=props
@@ -61,7 +63,6 @@ const  HomeNav=(props)=>{
     
      {currentUser &&  (
        
-       <>
       <ul className="Nav-Items">
     <li><Link className="nav-link" to="/">Home</Link></li>
     
@@ -73,21 +74,26 @@ const  HomeNav=(props)=>{
     
     <li onClick={()=>ScrollToSection(Reviews)}><Link className="nav-link">Reviews</Link></li>
     </ul>
+    ) }
     
-     <div className="nav-button">
+    <div className="nav-button">
+   <Link   className="cart" to="/cart">cart(  {totalNumCartItems})</Link>
+    {currentUser &&  (
+   <>
     <Link className="myAcc-btn" to="/dashboard" >my account</Link>
     <button className="btn logout-btn" onClick={handleSignOut}>logOut</button>
-    </div>
-    </>) }
+    </>
+    ) }
+    
+     
       
        {!currentUser &&  (
-      <div className="nav-button">
+   <>
     <Link className="login-btn" to="/login">login</Link>
-    {/* <Link className="" to="/cart"><GrCart/></Link> */}
     <Link className="btn primary-btn" to="/register" >get started</Link>
-    </div>
+</>
     )}
-   
+    </div>
     </nav>
     </>
   )

@@ -17,6 +17,8 @@ import Login from "./Pages/Login/Login"
 import Register from "./Pages/Register/Register"
 import ForgetPassword from "./Pages/ForgetPassword/ForgetPassword"
 import Search from "./Pages/Search/Search"
+import ProductDetails from "./Pages/ProductDetails/ProductDetails"
+import Cart from "./Pages/Cart/Cart"
 
 //redux
 import {useDispatch} from "react-redux"
@@ -51,18 +53,37 @@ const App =()=>{
     )}/>
     
     <Route exact path="/search" render={()=>(
+      <WithAuth>
        <MainLayout>
       <Search/>
       </MainLayout> 
+      </WithAuth>
    ) }/>
     
      {/*The  url params */}
     <Route path="/search/:filterType" render={()=>(
+      <WithAuth>
            <MainLayout>
       <Search/>
       </MainLayout>
+      </WithAuth>
     )}/>
     
+    <Route path="/productDetails/:productID" render={()=>(
+         <WithAuth>
+      <MainLayout>
+      <ProductDetails/>
+      </MainLayout>
+      </WithAuth>
+    )}/>
+    
+    <Route path="/cart" render={()=>(
+        <WithAuth>
+        <MainLayout>
+      <Cart/>
+      </MainLayout>
+      </WithAuth>
+    )}/>
     
     <Route path="/dashboard" render={()=>(
      <WithAdminAuth>

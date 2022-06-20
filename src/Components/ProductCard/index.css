@@ -1,0 +1,18 @@
+.productDetails-container{
+margin: 6rem 0 0 5rem ;
+}
+
+.productDetails-img{
+    width:450px;
+    height:300px;
+}
+
+.cartBtn{
+    background-color: rgb(90, 39, 39);
+    color:rgb(173, 173, 173); 
+}
+.cartBtn:hover{
+    background-color: rgb(90, 39, 39);
+    color:#fff;
+}
+

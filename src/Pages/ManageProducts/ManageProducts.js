@@ -1,13 +1,16 @@
 import React,{useState,useEffect} from 'react'
+
+import "./index.css"
+
 import {useSelector,useDispatch} from "react-redux"
 import {addNewProductsStart, fetchProductsStart,deleteProductStart} from "../../Components/Redux/Reducer/productsReducer/productsAction"
-import "./index.css"
 import Modal from "../../Components/Modal/index"
 import {CKEditor} from 'ckeditor4-react';
 
 import FormInput from "../../Components/FormInput/index"
 import FormSelect from "../../Components/FormSelect/index"
 import LoadMoreButton from "../../Components/LoadMoreButton/index"
+
 
 const mapState=({ProductsData})=>({
   products:ProductsData.products
@@ -22,12 +25,12 @@ function ManageProducts() {
 const [hideModal, setHideModal] = useState(true);
 
 //local state
-const [category, setCategory] = useState('fruits');
-const [title, setTitle] = useState('');
-const [imageUri, setImageUri] = useState('');
-const [price, setPrice] = useState(0);
-const [discount, setDiscount] = useState(0);
-const [description, setDescription] = useState("");
+const [productCategory, setProductCategory] = useState('perfumes');
+const [productName, setProductName] = useState('');
+const [productImg, setProductImg] = useState('');
+const [productPrice, setProductPrice] = useState(0);
+const [productDiscount, setProductDiscount] = useState(0);
+const [productDescription, setProductDescription] = useState("");
 
 
 
@@ -46,12 +49,12 @@ useEffect(()=>{
   
 const ResetForm=()=>{
   setHideModal(true)
-  setCategory("fruit");
-  setDescription("");
-  setImageUri("");
-   setPrice("");
-  setDiscount("");
-  setTitle("");
+  setProductCategory('perfumes');
+  setProductDescription("");
+  setProductImg("");
+   setProductPrice("");
+  setProductDiscount("");
+  setProductName("");
 }
 
 const handleSubmit = e => {
@@ -59,12 +62,12 @@ const handleSubmit = e => {
   
 dispatch(
   addNewProductsStart({
-category,
-title,
-description,
-imageUri,
- price,
-discount,
+productCategory,
+productName,
+productDescription,
+productImg,
+productPrice,
+ productDiscount,
   })
 );
 ResetForm()
@@ -100,31 +103,31 @@ const configLoadMore={
 
             <FormSelect
               label="Category"
-              options={[ {
-                value: "fruits",
-                name: "Fruits"
+              options={[{
+                name: "Perfumes",
+                value: 'perfumes'
               },
               {
-                value: "vegetables",
-                name: "Vegetables"
+                name: "Sneakers",
+                value: 'sneakers'
               },
               {
-                value: "meats",
-                name: "Meats"
+                name: "Shirts",
+                value: 'shirts'
               },
               {
-                value: "dairy products",
-                name: "Dairy Products"
+                name: "Watches",
+                value: 'watches'
               },
                         ]}
-              handleChange={e => setCategory(e.target.value)}
+              handleChange={e => setProductCategory(e.target.value)}
             />
 
             <FormInput
               label="Name"
               type="text"
-              value={title}
-              handleChange={e => setTitle(e.target.value)}
+              value={productName}
+              handleChange={e => setProductName(e.target.value)}
             />
             
             <FormInput
@@ -133,15 +136,15 @@ const configLoadMore={
               min="0.00"
               max="10000.00"
               step="0.01"
-              value={discount}
-              handleChange={e => setDiscount(e.target.value)}
+              value={productDiscount}
+              handleChange={e => setProductDiscount(e.target.value)}
             />
 
             <FormInput
               label="Main image URL"
               type="url"
-              value={imageUri}
-              handleChange={e => setImageUri(e.target.value)}
+              value={productImg}
+              handleChange={e => setProductImg(e.target.value)}
             />
 
             <FormInput
@@ -150,11 +153,11 @@ const configLoadMore={
               min="0.00"
               max="10000.00"
               step="0.01"
-              value={price}
-              handleChange={e => setPrice(e.target.value)}
+              value={productPrice}
+              handleChange={e => setProductPrice(e.target.value)}
             />
               <CKEditor
-              onChange={evt => setDescription(evt.editor.getData())}
+              onChange={e=> setProductDescription(e.editor.getData())}
             />
             <br />
 
@@ -168,14 +171,14 @@ const configLoadMore={
 <div className="manageProducts">
   <h3 className="manageProducts-header">Manage Products</h3>
   {(Array.isArray(data) && data.length > 0) && data.map((product)=>{
-    const{title,price,imageUri,documentID}=product
+    const{productName,productPrice,productImg,documentID}=product
   
 return(
   <div className="newProduct-container"  key={documentID}>
   <div className="newProduct-wrapper">
-    <img src={imageUri} alt="" className="imgUri"/>
-    <p className="product-name">{title}</p>
-    <p className="product-price">${price}</p>
+    <img src={productImg} alt="" className="imgUri"/>
+    <p className="product-name">{productName}</p>
+    <p className="product-price">${productPrice}</p>
     <button className="btn deleteBtn" onClick={()=>dispatch(deleteProductStart(documentID))}>Delete</button>
     </div>
     </div>

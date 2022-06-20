@@ -86,11 +86,15 @@
 
 .nav-button{
     display:grid;
-    grid-template-columns: auto auto;
-    gap: 25px;
-    
-    
+    grid-template-columns: repeat(5,auto);
+    gap: 25px; 
+    padding:10px;
 }
+
+.cart{
+    transform:translateY(5.5px); 
+}
+
 .login-btn{
     text-transform: uppercase;
     text-decoration:none;

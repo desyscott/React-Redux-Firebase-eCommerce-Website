@@ -40,31 +40,30 @@ const ProductsResult=()=>{
    history.push(`/search/${nextFilter}`)
     }
     
-    const configFilter={
+    const configCategoryFilter={
         defaultValue:filterType,
-        options:[
-            {
-                value: "",
-                name: "show all"
+        
+        options:[{  
+                name: "show all",
+                value: ""
         },
          
             {
-                value: "fruits",
-                name: "Fruits"
+              name: "Perfumes",
+             value: "perfumes"  
         },
         {
-            value: "vegetables",
-            name: "Vegetables"
+            name: "Sneakers",
+            value: "sneakers"
     },
+    {
+      name: "Watches",
+      value: "watches"
+},
             {
-                value: "meats",
-                name: "Meats"
-        },
-            {
-                value: "dairy products",
-                name: "Dairy Products"
-        }
-                 ],
+                name: "Shirts",
+                value: "shirts"
+        }],
   handleChange: handleFilter
     }
 
@@ -83,25 +82,26 @@ const handleLoadMore =()=>{
     <div className="ProductsResult-container">
     
        <h1>Browse Products</h1>
-       <FormSelect {...configFilter}/>
+       <FormSelect {...configCategoryFilter}/>
        
         {data.map(product=>{
-            const{imageUri,price,title, documentID}=product
-            
+             const{productPrice,productName, productImg}=product
+ 
+ if (!productImg || !productName ||
+            typeof productPrice === 'undefined') return null;
+ 
             const config={
-                imageUri,
-                price,
-                title, 
-                documentID
+           ...product
             }
+            
+            
           return(
-    
               <Product {...config}/>
           )
         })}
         <div>
       {  
-       !isLastPage &&
+       ! isLastPage &&
      ( <LoadMoreButton {...configLoadMore}/>)
        }
        </div>

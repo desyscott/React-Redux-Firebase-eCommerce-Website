@@ -1,6 +1,6 @@
 import React from 'react'
 
-const LoadMore=({ onLoadMoreEvt=()=>{},})=> {
+const LoadMore=({ onLoadMoreEvt=()=>{}})=> {
   return (
     <div>
     <button onClick={()=>onLoadMoreEvt()}>LoadMore</button>
