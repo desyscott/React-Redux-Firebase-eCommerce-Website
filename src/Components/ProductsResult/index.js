@@ -25,7 +25,9 @@ const ProductsResult=()=>{
       dispatch(fetchProductsStart({filterType}))
     },[filterType])
     
+    
     if(!Array.isArray(data)) return null
+    
     
     if(data.length < 1){
         return(

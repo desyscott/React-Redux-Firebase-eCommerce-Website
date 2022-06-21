@@ -17,7 +17,6 @@ const useAdminAuth=(props)=>{
             history.push("/login"); 
         }
     },[currentUser])
-    
     return currentUser
 }
-export default useAdminAuth
+export default useAdminAuth;

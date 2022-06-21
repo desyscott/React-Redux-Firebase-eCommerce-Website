@@ -25,12 +25,10 @@ export function* getSnapshotFromUserAuth(user,additionalData={}){
             yield put(signInSuccess({
                 id:snapshot.id,
                 ...snapshot.data()
-              }))
-           
+              }))    
     }catch(err){
         console.log(err)
-    }
-    
+    }   
 }
 
 //generator function that handle the signIn action
@@ -38,7 +36,6 @@ export function* emailSignIn({payLoad:{email,password}}){
     try{
        const {user}=yield signInWithEmailAndPassword(auth,email,password);
        yield getSnapshotFromUserAuth(user)
-
    }catch(err){
        console.log(err)  
    } 
@@ -48,20 +45,22 @@ export function* onEmailSignStart(){
     yield takeLatest(userTypes.EMAIL_SIGN_IN_START,emailSignIn)
 }
 
+
 export function* isUserAuthenticated(){
     try{
         const authUser=yield getCurrentUser()
         if(!authUser) return 
         yield getSnapshotFromUserAuth(authUser)
-        
     }catch(err){
         console.log(err)
     }
 }
 
+
 export function* onCheckUserSession(){
     yield takeLatest(userTypes.CHECK_USER_SESSION,isUserAuthenticated)
 }
+
 
 export function* signOutUser(){
     try{
@@ -71,6 +70,7 @@ export function* signOutUser(){
         console.log(err)
     }
 }
+
 
 export function* onSignOutStart(){
     yield takeLatest(userTypes.SIGN_OUT_START,signOutUser)

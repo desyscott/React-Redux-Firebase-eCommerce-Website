@@ -73,6 +73,7 @@ const  HomeNav=(props)=>{
     <li onClick={()=>ScrollToSection(Features)}><Link className="nav-link">Features</Link></li>
     
     <li onClick={()=>ScrollToSection(Reviews)}><Link className="nav-link">Reviews</Link></li>
+    <li ><Link className="nav-link" to="/search">Search</Link></li>
     </ul>
     ) }
     

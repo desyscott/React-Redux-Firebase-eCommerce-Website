@@ -66,19 +66,19 @@ const App =()=>{
            <MainLayout>
       <Search/>
       </MainLayout>
-      </WithAuth>
+     </WithAuth> 
     )}/>
     
     <Route path="/productDetails/:productID" render={()=>(
-         <WithAuth>
+        <WithAuth>
       <MainLayout>
       <ProductDetails/>
       </MainLayout>
-      </WithAuth>
+    </WithAuth>
     )}/>
     
     <Route path="/cart" render={()=>(
-        <WithAuth>
+       <WithAuth>
         <MainLayout>
       <Cart/>
       </MainLayout>

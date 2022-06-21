@@ -7,10 +7,12 @@ export const emailSignInStart=(userCredentials) => ({
     payLoad:userCredentials
 })
 
+
 export const signInSuccess=(user) => ({
     type: userTypes.SIGN_IN_SUCCESS,
     payLoad:user
 })
+
 
 export const checkUserSession=()=>({
     type: userTypes.CHECK_USER_SESSION
@@ -20,6 +22,7 @@ export const checkUserSession=()=>({
 export const signOutStart=()=>({
     type:userTypes.SIGN_OUT_START
 })
+
 
 export const signOutSuccess=()=>({
     type:userTypes.SIGN_OUT_SUCCESS
@@ -41,19 +44,23 @@ export const resetPasswordStart=(userCredentials)=>({
     payLoad:userCredentials
 })
 
+
 export const signInWIthGoogleStart=()=>({
     type:userTypes.GOOGLE_SIGN_IN_START
 })
+
 
 export const resetPasswordSuccess=()=>({
     type:userTypes.RESET_PASSWORD_SUCCESS,
     payLoad:true
 })
 
+
 export const resetPasswordError=(err)=>({
     type:userTypes.RESET_PASSWORD_ERROR,
     payLoad:err
 })
+
 
 export const resetUserState=()=>({
     type:userTypes.RESET_USER_STATE,

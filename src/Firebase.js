@@ -1,6 +1,6 @@
 import{initializeApp} from 'firebase/app';
 import {getAuth,onAuthStateChanged} from 'firebase/auth';
-import {getFirestore,collection,doc,getDoc,updateDoc,setDoc} from  'firebase/firestore';
+import {getFirestore,doc,getDoc,setDoc} from  'firebase/firestore';
 import {getStorage} from 'firebase/storage'; 
 
 // const firebaseConfig = { 
@@ -29,7 +29,7 @@ const  auth =getAuth(firebaseApp)
 const  db =getFirestore(firebaseApp)
 const  storage =getStorage(firebaseApp)
 
-export {auth ,db,storage}
+export {auth ,db,storage, firebaseApp}
 
 export const handleUserProfile=async({authUser,additionalData})=>{
   if(!authUser) return;
@@ -37,7 +37,7 @@ export const handleUserProfile=async({authUser,additionalData})=>{
   //if the user exist
   const {uid} =authUser;
   
-  const userRef= doc(db,'users',`${uid}`);
+  const userRef= doc(db,'/users',`/${uid}`);
  const snapShot =  await getDoc(userRef)
  
  
@@ -48,7 +48,6 @@ export const handleUserProfile=async({authUser,additionalData})=>{
    const userRoles=["user"];
    
    try{
-     
     await setDoc(userRef, {
       email,
       name,
@@ -61,7 +60,6 @@ export const handleUserProfile=async({authUser,additionalData})=>{
      console.log(err)
    }
  } 
- 
  return userRef
 }
 

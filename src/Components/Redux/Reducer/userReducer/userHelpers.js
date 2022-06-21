@@ -7,6 +7,7 @@ export const handleResetPasswordAPI =(email)=>{
         url: "http://localhost:3000/login"
     }
     
+    
     return new Promise((resolve,reject)=>{
         sendPasswordResetEmail(auth,email,config).then(()=>{
             resolve();  

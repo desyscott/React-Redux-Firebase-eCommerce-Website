@@ -33,13 +33,14 @@ productDiscount,
   } catch (err) {
     console.log(err);
   }
-
 }
+
 
 ///generator that intercept  the dispatch action with a payLoad that update the redux store
 export function* onAddNewProductStart() {
   yield takeLatest(productsTypes.ADD_NEW_PRODUCTS_START, addNewProduct);
 }
+
 
 export function* fetchProducts({payLoad}){
     try{
@@ -52,10 +53,12 @@ export function* fetchProducts({payLoad}){
     }
 }
 
+
 ///generator that intercept  the dispatch action with a payLoad that update the redux store
 export function* onFetchProductsStart(){
   yield takeLatest(productsTypes.FETCH_PRODUCTS_START,fetchProducts);
 } 
+
 
 export function* deleteProduct({payLoad}){
    try{
@@ -68,9 +71,11 @@ export function* deleteProduct({payLoad}){
    }
 }
 
+
 export function* onDeleteProductStart(){
     yield takeLatest(productsTypes.DELETE_PRODUCT_START,deleteProduct)
 }
+
 
 export  function* fetchProduct({payLoad}){
   try{
@@ -81,9 +86,11 @@ export  function* fetchProduct({payLoad}){
   }
 }
 
+
 export function* onFetchProductStart(){
   yield takeLatest(productsTypes.FETCH_PRODUCT_START,fetchProduct)
 }
+
 
 export default function* productsSagas(){
     yield all([

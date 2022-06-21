@@ -17,6 +17,7 @@ const userReducer=( state=INITIAL_STATE,action) =>{
                         currentUser: action.payLoad,
                         singUpError:[],
                     }
+                    
                     case userTypes.SIGN_UP_ERROR:
                     return{
                         ...state,

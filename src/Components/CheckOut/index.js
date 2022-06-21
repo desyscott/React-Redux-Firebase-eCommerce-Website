@@ -46,7 +46,7 @@ const CheckOut =({})=>{
         </div>
         </div>
         </> ):
-            <div>
+            <div> 
             <p>{ErrMessage}</p>
             </div>
          
